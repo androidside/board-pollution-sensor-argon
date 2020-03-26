@@ -8,10 +8,10 @@
       "name": "ESP32 OpenOCD",
       "type": "cppdbg",
       "request": "launch",
-      "miDebuggerPath": "${env:IDF_TOOLS_PATH}/tools/xtensa-esp32-elf/esp32-2019r1-8.2.0/xtensa-esp32-elf/bin/xtensa-esp32-elf-gdb.exe",
+      "miDebuggerPath": "C:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp32-2019r1-8.2.0/xtensa-esp32-elf/bin/xtensa-esp32-elf-gdb.exe",
       "cwd": "${workspaceFolder}/build",
       //change the name of the elf file as required
-      "program": "${workspaceFolder}/build/mair-template.elf",
+      "program": "C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/esp32-starter-master/build/esp32-starter-master.elf",
       "setupCommands": [
         {
           "description": "Enable pretty-printing for gdb",
@@ -19,9 +19,7 @@
           "ignoreFailures": true
         },
         {
-          // there's a bug in vs code that prevents us from using ${workspaceFolder} variable.
-          // update the path as needed
-          "text": "file 'C:/_esp32/esp32_starter_template/build/mair-template.elf'"
+          "text": "file 'C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/esp32-starter-master/build/esp32-starter-master.elf'"
         },
         {
           "text": "target remote 127.0.0.1:3333"
