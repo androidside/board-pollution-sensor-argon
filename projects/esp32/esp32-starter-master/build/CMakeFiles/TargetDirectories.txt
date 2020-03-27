@@ -503,3 +503,10 @@ C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/esp32-starter-master/buil
 C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/esp32-starter-master/build/esp-idf/main/CMakeFiles/rebuild_cache.dir
 C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/esp32-starter-master/build/esp-idf/main/CMakeFiles/list_install_components.dir
 C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/esp32-starter-master/build/esp-idf/main/CMakeFiles/install/strip.dir
+C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/esp32-starter-master/build/esp-idf/myModule/CMakeFiles/__idf_myModule.dir
+C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/esp32-starter-master/build/esp-idf/myModule/CMakeFiles/install/local.dir
+C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/esp32-starter-master/build/esp-idf/myModule/CMakeFiles/install.dir
+C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/esp32-starter-master/build/esp-idf/myModule/CMakeFiles/edit_cache.dir
+C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/esp32-starter-master/build/esp-idf/myModule/CMakeFiles/rebuild_cache.dir
+C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/esp32-starter-master/build/esp-idf/myModule/CMakeFiles/list_install_components.dir
+C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/esp32-starter-master/build/esp-idf/myModule/CMakeFiles/install/strip.dir

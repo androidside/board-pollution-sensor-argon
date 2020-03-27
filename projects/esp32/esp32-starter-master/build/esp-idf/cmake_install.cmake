@@ -99,6 +99,7 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   include("C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/esp32-starter-master/build/esp-idf/unity/cmake_install.cmake")
   include("C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/esp32-starter-master/build/esp-idf/wifi_provisioning/cmake_install.cmake")
   include("C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/esp32-starter-master/build/esp-idf/main/cmake_install.cmake")
+  include("C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/esp32-starter-master/build/esp-idf/myModule/cmake_install.cmake")
 
 endif()
 

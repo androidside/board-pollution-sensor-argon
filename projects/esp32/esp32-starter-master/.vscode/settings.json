@@ -8,6 +8,10 @@
   "files.associations": {
     "*.md": "markdown",
     "*.mdx": "tdx",
-    "stdio.h": "c"
+    "stdio.h": "c",
+    "esp_log.h": "c",
+    "module.h": "c",
+    "string.h": "c",
+    "module_jordi.h": "c"
   }
 }
