@@ -12,6 +12,8 @@
     "esp_log.h": "c",
     "module.h": "c",
     "string.h": "c",
-    "module_jordi.h": "c"
+    "module_jordi.h": "c",
+    "__locale": "c",
+    "queue": "c"
   }
 }

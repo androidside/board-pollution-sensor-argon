@@ -1290,6 +1290,107 @@
     {
         "children": [
             {
+                "children": [],
+                "depends_on": null,
+                "help": null,
+                "id": "MY_BOOL",
+                "name": "MY_BOOL",
+                "range": null,
+                "title": "select yes or no",
+                "type": "bool"
+            },
+            {
+                "children": [],
+                "depends_on": null,
+                "help": null,
+                "id": "MY_SECRET",
+                "name": "MY_SECRET",
+                "range": null,
+                "title": "enter a secret",
+                "type": "string"
+            },
+            {
+                "children": [],
+                "depends_on": null,
+                "help": "this is my help text description\n",
+                "id": "MY_STRING",
+                "name": "MY_STRING",
+                "range": null,
+                "title": "enter a string",
+                "type": "string"
+            },
+            {
+                "children": [],
+                "depends_on": null,
+                "help": null,
+                "id": "MY_INT",
+                "name": "MY_INT",
+                "range": [
+                    1,
+                    15
+                ],
+                "title": "in int",
+                "type": "int"
+            },
+            {
+                "children": [],
+                "depends_on": null,
+                "help": null,
+                "id": "MY_CHOICE",
+                "name": "MY_CHOICE",
+                "range": null,
+                "title": null,
+                "type": "unknown"
+            },
+            {
+                "children": [
+                    {
+                        "children": [],
+                        "depends_on": "<choice>",
+                        "help": null,
+                        "id": "OPTION_1",
+                        "name": "OPTION_1",
+                        "range": null,
+                        "title": "this is option 1",
+                        "type": "bool"
+                    },
+                    {
+                        "children": [],
+                        "depends_on": "<choice>",
+                        "help": null,
+                        "id": "OPTION_2",
+                        "name": "OPTION_2",
+                        "range": null,
+                        "title": "this is option 2",
+                        "type": "bool"
+                    },
+                    {
+                        "children": [],
+                        "depends_on": "<choice>",
+                        "help": null,
+                        "id": "OPTION_3",
+                        "name": "OPTION_3",
+                        "range": null,
+                        "title": "this is option 3",
+                        "type": "bool"
+                    }
+                ],
+                "depends_on": null,
+                "help": null,
+                "id": "my-custom-menu-select-a-choice",
+                "name": null,
+                "title": "select a choice",
+                "type": "choice"
+            }
+        ],
+        "depends_on": null,
+        "id": "my-custom-menu",
+        "title": "My Custom Menu",
+        "type": "menu"
+    },
+    {
+        "children": [
+            {
                 "children": [
                     {
                         "children": [],
@@ -10662,7 +10763,7 @@
                         "id": "LWIP_TCPIP_TASK_STACK_SIZE",
                         "name": "LWIP_TCPIP_TASK_STACK_SIZE",
                         "range": [
-                            2560,
+                            2048,
                             65536
                         ],
                         "title": "TCP/IP Task Stack Size",
