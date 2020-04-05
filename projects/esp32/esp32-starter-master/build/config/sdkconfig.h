@@ -39,6 +39,12 @@
 #define CONFIG_MY_STRING "This is a new string"
 #define CONFIG_MY_INT 5
 #define CONFIG_OPTION_1 1
+#define CONFIG_WIFI_SSID "DarkMatter"
+#define CONFIG_WIFI_PASSWORD "moduli-chain-moonbeam-host-encode-gymnast"
+#define CONFIG_EXAMPLE_CONNECT_WIFI 1
+#define CONFIG_EXAMPLE_WIFI_SSID "DarkMatter"
+#define CONFIG_EXAMPLE_WIFI_PASSWORD "moduli-chain-moonbeam-host-encode-gymnast"
+#define CONFIG_EXAMPLE_CONNECT_IPV6 1
 #define CONFIG_COMPILER_OPTIMIZATION_LEVEL_DEBUG 1
 #define CONFIG_COMPILER_OPTIMIZATION_ASSERTIONS_ENABLE 1
 #define CONFIG_COMPILER_STACK_CHECK_MODE_NONE 1

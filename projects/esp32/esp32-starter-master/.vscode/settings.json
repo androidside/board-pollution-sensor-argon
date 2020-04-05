@@ -16,6 +16,10 @@
     "__locale": "c",
     "queue": "c",
     "unistd.h": "c",
-    "dirent.h": "c"
+    "dirent.h": "c",
+    "random": "c",
+    "protocol_examples_common.h": "c",
+    "esp_wifi.h": "c",
+    "algorithm": "c"
   }
 }

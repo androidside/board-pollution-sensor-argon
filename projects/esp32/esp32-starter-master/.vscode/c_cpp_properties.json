@@ -70,7 +70,9 @@
                 "${IDF_PATH}/components/bt/host/nimble/nimble/nimble/host/services/gap/include",
                 "${IDF_PATH}/components/bt/host/nimble/nimble/nimble/host/services/gatt/include",
                 "${workspaceFolder}/components/myModule",
-                "${workspaceFolder}/components"
+                "${workspaceFolder}/components",
+                "${IDF_PATH}/examples/common_components/protocol_examples_common"
+
             ],
             "defines": [],
             "cStandard": "c11",

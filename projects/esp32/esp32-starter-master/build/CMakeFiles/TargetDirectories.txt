@@ -511,3 +511,10 @@ C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/esp32-starter-master/buil
 C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/esp32-starter-master/build/esp-idf/myModule/CMakeFiles/rebuild_cache.dir
 C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/esp32-starter-master/build/esp-idf/myModule/CMakeFiles/list_install_components.dir
 C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/esp32-starter-master/build/esp-idf/myModule/CMakeFiles/install/strip.dir
+C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/esp32-starter-master/build/esp-idf/protocol_examples_common/CMakeFiles/__idf_protocol_examples_common.dir
+C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/esp32-starter-master/build/esp-idf/protocol_examples_common/CMakeFiles/install/local.dir
+C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/esp32-starter-master/build/esp-idf/protocol_examples_common/CMakeFiles/install.dir
+C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/esp32-starter-master/build/esp-idf/protocol_examples_common/CMakeFiles/edit_cache.dir
+C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/esp32-starter-master/build/esp-idf/protocol_examples_common/CMakeFiles/rebuild_cache.dir
+C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/esp32-starter-master/build/esp-idf/protocol_examples_common/CMakeFiles/list_install_components.dir
+C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/esp32-starter-master/build/esp-idf/protocol_examples_common/CMakeFiles/install/strip.dir
