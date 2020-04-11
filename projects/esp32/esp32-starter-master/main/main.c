@@ -26,209 +26,239 @@
 #include "esp_event.h"
 #include "nvs_flash.h"
 #include "esp_http_client.h"
+#include "fetch.h"
+#include "cJSON.h"
+#include "connect.h"
 
-#define MAX_APs 20
-#define SSID CONFIG_WIFI_SSID
-#define PASSWORD CONFIG_WIFI_PASSWORD
+#define TAG "DATA"
+#define NUMBER "655807482"
 
 xSemaphoreHandle onConnectionHandler;
+int testextern;
 
-//Method used on the esp_event_loop_init() function on the wifiInit function
-//This method captures/intercepts the states of the cycles that happen when we connect to the internet
-static esp_err_t event_handler(void *ctx, system_event_t *event)
+void OnGotData(char *incomingBuffer, char *output)
 {
-  switch (event->event_id)
+  ESP_LOGI(TAG, "Parsing quote");
+  //that gives the entire payload from bracket to bracket
+  cJSON *payload = cJSON_Parse(incomingBuffer);
+  //now we have to get the contents key
+  cJSON *contents = cJSON_GetObjectItem(payload, "contents");
+  cJSON *quotes = cJSON_GetObjectItem(contents, "quotes");
+  cJSON *quotesElement;
+  //Sometimes the content can be an array of quotes, so we have to iterate over the quotes array
+  cJSON_ArrayForEach(quotesElement, quotes)
   {
-  case SYSTEM_EVENT_STA_START:
-    esp_wifi_connect();
-    printf("connecting ...\n");
-    break;
-
-  case SYSTEM_EVENT_STA_CONNECTED:
-    printf("connected...\n");
-    break;
-
-  case SYSTEM_EVENT_STA_GOT_IP:
-    printf("got ip...\n");
-    //Gives me back the amount of space left on the stack
-    printf("stack space is %d\n", uxTaskGetStackHighWaterMark(NULL));
-    //We give the seamaphore so the task can continue
-    xSemaphoreGive(onConnectionHandler);
-    break;
-
-  case SYSTEM_EVENT_STA_DISCONNECTED:
-    printf("disconnected...\n");
-    break;
-
-  default:
-    break;
+    cJSON *quote = cJSON_GetObjectItem(quotesElement, "quote");
+    ESP_LOGI(TAG, "Printing Final Quote");
+    ESP_LOGI(TAG, "%s", quote->valuestring);
+    strcpy(output, quote->valuestring);
   }
-  return ESP_OK;
+  //clean up the parent element and the child elements get cleaned automatically
+  cJSON_Delete(payload);
 }
 
-void wifiInit()
+//3 parameters, number, message out to create the string
+// void createBody(char *number, char *message, char *outputString){
+//   //Add JSON structure to the string, we can use cJSON (look at documentation) or we can do it as follows
+void createBody(char *number, char *message, char *outputString)
 {
-  //Initialize Non volatile storage NVS
-  ESP_ERROR_CHECK(nvs_flash_init());
-  //Initialize my TCP adapter
-  tcpip_adapter_init();
+  //I have to escape the quotes
+  sprintf(outputString,
+          "{"
+          "  \"messages\": ["
+          "      {"
+          "      "
+          "          \"content\": \"%s\","
+          "          \"destination_number\": \"%s\","
+          "          \"format\": \"SMS\""
+          "      }"
+          "  ]"
+          "}",
+          message, number);
+          //I need to put each individual line in an individual quote "line 1"
+  ESP_LOGI(TAG, "HTTP POST Body String = %s", outputString);
 
-  //Handle an event loop
-  ESP_ERROR_CHECK(esp_event_loop_init(event_handler, NULL));
-
-  //Initialize our wifi configuration
-  wifi_init_config_t wifi_init_config = WIFI_INIT_CONFIG_DEFAULT();
-
-  //Tell ESP to use this structure that we just declared
-  ESP_ERROR_CHECK(esp_wifi_init(&wifi_init_config));
-
-  //Tell the esp whether or not is going to be utilizing our wifi as a station mode softapp (software access point)
-  //WIFI_MODE_AP == I can connect other things to it
-  //WIFI_MODE_STA == You connect to a router
-  ESP_ERROR_CHECK(esp_wifi_set_mode(WIFI_MODE_STA));
-
-  wifi_config_t wifi_config = {
-      .sta = {
-          .ssid = SSID,
-          .password = PASSWORD}};
-
-  //We set this configuration
-  esp_wifi_set_config(ESP_IF_WIFI_STA, &wifi_config);
-  ESP_ERROR_CHECK(esp_wifi_start());
 }
 
-void onConnected(void *param){
+void onConnected(void *param)
+{
   while (true)
   {
     //It won't proceed any further until we get an ip address
-    if (xSemaphoreTake(onConnectionHandler, 10 * 1000/portTICK_PERIOD_MS)) //We wait for 10 seconds
+    if (xSemaphoreTake(onConnectionHandler, 10 * 1000 / portTICK_PERIOD_MS)) //We wait for 10 seconds
     {
+      ESP_LOGI(TAG, "Processing");
+      struct fetchParams_t fetchParams;
+      fetchParams.OnGotData = OnGotData;
+      fetchParams.body = NULL;
+      fetchParams.headerCount = 0;
+      fetchParams.method = GET;
       //do something useful and wait forever
-  
+      fetch("https://quotes.rest/qod?language=en", &fetchParams);
+      //received ok, so we send sms
+      if (fetchParams.status == 200)
+      {
+        //send SMS
+        struct fetchParams_t smsStruct;
+        smsStruct.OnGotData = NULL;
+        smsStruct.OnGotData = NULL;
+        smsStruct.method = POST;
+
+        header_t headerContentType = {
+            .key = "Content-Type",
+            .val = "application/json"};
+
+        header_t headerAccept = {
+            .key = "Accept",
+            .val = "application/json"};
+
+        header_t headerAuthorization = {
+            .key = "Authorization",
+            .val = "Basic a3NScUxxOUZCeU9PbmVHVlJBSzA6aG5VMFJ5STVWcDJiRktSQWtIZEs5NmR6VnIzeTE3"};
+                   
+        smsStruct.header[0] = headerAuthorization;
+        smsStruct.header[1] = headerAccept;
+        smsStruct.header[2] = headerContentType;
+        smsStruct.headerCount = 3;
+
+        //Output buffer, I could use malloc()...
+        char buffer[1024];
+        //Populate the body of the message, we create a method
+        createBody(NUMBER, fetchParams.message, buffer);
+        smsStruct.body = buffer;
+        //We update out fetch.c to acomodate the new parameters
+        fetch("https://api.messagemedia.com/v1/messages", &smsStruct);
+
+      }
+      ESP_LOGI(TAG, "%s", fetchParams.message);
+      ESP_LOGI(TAG, "Done!");
+      //Disconnect from the internet, switch of wifi
+      esp_wifi_disconnect();
       //Stop the execution of the program, wait forever so it doesn't get the information from the internet again
       xSemaphoreTake(onConnectionHandler, portMAX_DELAY);
     }
 
-    else{
-      ESP_LOGE("CONNECTION", "Could not connect");
+    else
+    {
+      ESP_LOGE(TAG, "Failed to connect. Retry in");
+      for (int i = 0; i < 5; i++)
+      {
+        ESP_LOGI(TAG, "...%d", i);
+        vTaskDelay(1000 / portTICK_RATE_MS);
+      }
       esp_restart();
       //the while loop will execute again
     }
-    
   }
-  
 }
 
 void app_main()
 {
-  onConnectionHandler =xSemaphoreCreateBinary();
+  onConnectionHandler = xSemaphoreCreateBinary();
   wifiInit();
-  xTaskCreate(&onConnected, "On Connected", 1024 * 4, NULL, 5, NULL);
-
-
-
+  //1024 words * 5
+  xTaskCreate(&onConnected, "On Connected", 1024 * 5, NULL, 5, NULL);
 
   /**************************************************/
   /******************* -  Wifi Connect to the Internet BOILERPLATE CODE *******************/
   /**************************************************/
-// #define MAX_APs 20
-// #define SSID CONFIG_WIFI_SSID
-// #define PASSWORD CONFIG_WIFI_PASSWORD
+  // #define MAX_APs 20
+  // #define SSID CONFIG_WIFI_SSID
+  // #define PASSWORD CONFIG_WIFI_PASSWORD
 
-// xSemaphoreHandle onConnectionHandler;
+  // xSemaphoreHandle onConnectionHandler;
 
-// //Method used on the esp_event_loop_init() function on the wifiInit function
-// //This method captures/intercepts the states of the cycles that happen when we connect to the internet
-// static esp_err_t event_handler(void *ctx, system_event_t *event)
-// {
-//   switch (event->event_id)
-//   {
-//   case SYSTEM_EVENT_STA_START:
-//     esp_wifi_connect();
-//     printf("connecting ...\n");
-//     break;
+  // //Method used on the esp_event_loop_init() function on the wifiInit function
+  // //This method captures/intercepts the states of the cycles that happen when we connect to the internet
+  // static esp_err_t event_handler(void *ctx, system_event_t *event)
+  // {
+  //   switch (event->event_id)
+  //   {
+  //   case SYSTEM_EVENT_STA_START:
+  //     esp_wifi_connect();
+  //     printf("connecting ...\n");
+  //     break;
 
-//   case SYSTEM_EVENT_STA_CONNECTED:
-//     printf("connected...\n");
-//     break;
+  //   case SYSTEM_EVENT_STA_CONNECTED:
+  //     printf("connected...\n");
+  //     break;
 
-//   case SYSTEM_EVENT_STA_GOT_IP:
-//     printf("got ip...\n");
-//     //Gives me back the amount of space left on the stack
-//     printf("stack space is %d\n", uxTaskGetStackHighWaterMark(NULL));
-//     //We give the seamaphore so the task can continue
-//     xSemaphoreGive(onConnectionHandler);
-//     break;
+  //   case SYSTEM_EVENT_STA_GOT_IP:
+  //     printf("got ip...\n");
+  //     //Gives me back the amount of space left on the stack
+  //     printf("stack space is %d\n", uxTaskGetStackHighWaterMark(NULL));
+  //     //We give the seamaphore so the task can continue
+  //     xSemaphoreGive(onConnectionHandler);
+  //     break;
 
-//   case SYSTEM_EVENT_STA_DISCONNECTED:
-//     printf("disconnected...\n");
-//     break;
+  //   case SYSTEM_EVENT_STA_DISCONNECTED:
+  //     printf("disconnected...\n");
+  //     break;
 
-//   default:
-//     break;
-//   }
-//   return ESP_OK;
-// }
+  //   default:
+  //     break;
+  //   }
+  //   return ESP_OK;
+  // }
 
-// void wifiInit()
-// {
-//   //Initialize Non volatile storage NVS
-//   ESP_ERROR_CHECK(nvs_flash_init());
-//   //Initialize my TCP adapter
-//   tcpip_adapter_init();
+  // void wifiInit()
+  // {
+  //   //Initialize Non volatile storage NVS
+  //   ESP_ERROR_CHECK(nvs_flash_init());
+  //   //Initialize my TCP adapter
+  //   tcpip_adapter_init();
 
-//   //Handle an event loop
-//   ESP_ERROR_CHECK(esp_event_loop_init(event_handler, NULL));
+  //   //Handle an event loop
+  //   ESP_ERROR_CHECK(esp_event_loop_init(event_handler, NULL));
 
-//   //Initialize our wifi configuration
-//   wifi_init_config_t wifi_init_config = WIFI_INIT_CONFIG_DEFAULT();
+  //   //Initialize our wifi configuration
+  //   wifi_init_config_t wifi_init_config = WIFI_INIT_CONFIG_DEFAULT();
 
-//   //Tell ESP to use this structure that we just declared
-//   ESP_ERROR_CHECK(esp_wifi_init(&wifi_init_config));
+  //   //Tell ESP to use this structure that we just declared
+  //   ESP_ERROR_CHECK(esp_wifi_init(&wifi_init_config));
 
-//   //Tell the esp whether or not is going to be utilizing our wifi as a station mode softapp (software access point)
-//   //WIFI_MODE_AP == I can connect other things to it
-//   //WIFI_MODE_STA == You connect to a router
-//   ESP_ERROR_CHECK(esp_wifi_set_mode(WIFI_MODE_STA));
+  //   //Tell the esp whether or not is going to be utilizing our wifi as a station mode softapp (software access point)
+  //   //WIFI_MODE_AP == I can connect other things to it
+  //   //WIFI_MODE_STA == You connect to a router
+  //   ESP_ERROR_CHECK(esp_wifi_set_mode(WIFI_MODE_STA));
 
-//   wifi_config_t wifi_config = {
-//       .sta = {
-//           .ssid = SSID,
-//           .password = PASSWORD}};
+  //   wifi_config_t wifi_config = {
+  //       .sta = {
+  //           .ssid = SSID,
+  //           .password = PASSWORD}};
 
-//   //We set this configuration
-//   esp_wifi_set_config(ESP_IF_WIFI_STA, &wifi_config);
-//   ESP_ERROR_CHECK(esp_wifi_start());
-// }
+  //   //We set this configuration
+  //   esp_wifi_set_config(ESP_IF_WIFI_STA, &wifi_config);
+  //   ESP_ERROR_CHECK(esp_wifi_start());
+  // }
 
-// void onConnected(void *param){
-//   while (true)
-//   {
-//     //It won't proceed any further until we get an ip address
-//     if (xSemaphoreTake(onConnectionHandler, 10 * 1000/portTICK_PERIOD_MS)) //We wait for 10 seconds
-//     {
-//       //DO SOMETHING USEFUL HERE !!!
+  // void onConnected(void *param){
+  //   while (true)
+  //   {
+  //     //It won't proceed any further until we get an ip address
+  //     if (xSemaphoreTake(onConnectionHandler, 10 * 1000/portTICK_PERIOD_MS)) //We wait for 10 seconds
+  //     {
+  //       //DO SOMETHING USEFUL HERE !!!
 
-//       //Stop the execution of the program, wait forever so it doesn't get the information from the internet again
-//       xSemaphoreTake(onConnectionHandler, portMAX_DELAY);
-//     }
+  //       //Stop the execution of the program, wait forever so it doesn't get the information from the internet again
+  //       xSemaphoreTake(onConnectionHandler, portMAX_DELAY);
+  //     }
 
-//     else{
-//       ESP_LOGE("CONNECTION", "Could not connect");
-//       esp_restart();
-//       //the while loop will execute again
-//     }
-    
-//   }
-  
-// }
+  //     else{
+  //       ESP_LOGE("CONNECTION", "Could not connect");
+  //       esp_restart();
+  //       //the while loop will execute again
+  //     }
 
-// void app_main()
-// {
-//   onConnectionHandler =xSemaphoreCreateBinary();
-//   wifiInit();
-//   xTaskCreate(&onConnected, "On Connected", 1024 * 4, NULL, 5, NULL);
+  //   }
 
+  // }
+
+  // void app_main()
+  // {
+  //   onConnectionHandler =xSemaphoreCreateBinary();
+  //   wifiInit();
+  //   xTaskCreate(&onConnected, "On Connected", 1024 * 4, NULL, 5, NULL);
 
   /**************************************************/
   /******************* -  Wifi Scan code example *******************/
