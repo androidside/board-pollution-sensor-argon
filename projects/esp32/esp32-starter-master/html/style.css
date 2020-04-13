@@ -1,0 +1,26 @@
+body{
+    background-color: azure;
+}
+
+
+.main-body{
+    margin:auto;
+    text-align: center;
+}
+
+/* This will is going to apply for all states of the LED */
+.led{
+    width: 20px; /*that div is square and invisible*/
+    height: 20px;
+    border: 2px solid black; /*border*/
+    margin: auto; /*Margin will center line that particular div or anything that is inside it */
+    border-radius: 20px; /*Will round the corners to make it look circle*/
+}
+/*We need to update our script.js to implement this change*/
+.led-on{
+    background-color: blue;
+}
+
+.led-off{
+    background-color: azure;
+}

@@ -12,4 +12,5 @@ set(COMPONENT_EMBED_FILES
 )
 
 register_component()
-spiffs_create_partition_image(storage ../spiffs_dir FLASH_IN_PROJECT)
+# spiffs_create_partition_image(storage ../spiffs_dir FLASH_IN_PROJECT)
+spiffs_create_partition_image(spiffs ../html FLASH_IN_PROJECT) #spiffs is name of the partition on partitions_internet_server.csv

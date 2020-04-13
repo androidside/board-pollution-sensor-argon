@@ -11,12 +11,12 @@
         "0x8000" : "partition_table/partition-table.bin",
         "0x1000" : "bootloader/bootloader.bin",
         "0x10000" : "esp32-starter-master.bin",
-        "0x110000" : "storage.bin"
+        "0x110000" : "spiffs.bin"
     },
     "partition_table" : { "offset" : "0x8000", "file" : "partition_table/partition-table.bin" },
     "bootloader" : { "offset" : "0x1000", "file" : "bootloader/bootloader.bin" },
     "app" : { "offset" : "0x10000", "file" : "esp32-starter-master.bin" },
-    "storage" : { "offset" : "0x110000", "file" : "storage.bin" },
+    "spiffs" : { "offset" : "0x110000", "file" : "spiffs.bin" },
     "extra_esptool_args" : {
         "after"  : "hard_reset",
         "before" : "default_reset"

@@ -29,113 +29,31 @@
 #include "fetch.h"
 #include "cJSON.h"
 #include "connect.h"
+#include "server.h"
+#include "lm75a.h"
+#include "spiffs.h"
 
 #define TAG "DATA"
-#define NUMBER "655807482"
 
-xSemaphoreHandle onConnectionHandler;
-int testextern;
+xSemaphoreHandle connectionSemaphore;
 
-void OnGotData(char *incomingBuffer, char *output)
-{
-  ESP_LOGI(TAG, "Parsing quote");
-  //that gives the entire payload from bracket to bracket
-  cJSON *payload = cJSON_Parse(incomingBuffer);
-  //now we have to get the contents key
-  cJSON *contents = cJSON_GetObjectItem(payload, "contents");
-  cJSON *quotes = cJSON_GetObjectItem(contents, "quotes");
-  cJSON *quotesElement;
-  //Sometimes the content can be an array of quotes, so we have to iterate over the quotes array
-  cJSON_ArrayForEach(quotesElement, quotes)
-  {
-    cJSON *quote = cJSON_GetObjectItem(quotesElement, "quote");
-    ESP_LOGI(TAG, "Printing Final Quote");
-    ESP_LOGI(TAG, "%s", quote->valuestring);
-    strcpy(output, quote->valuestring);
-  }
-  //clean up the parent element and the child elements get cleaned automatically
-  cJSON_Delete(payload);
-}
-
-//3 parameters, number, message out to create the string
-// void createBody(char *number, char *message, char *outputString){
-//   //Add JSON structure to the string, we can use cJSON (look at documentation) or we can do it as follows
-void createBody(char *number, char *message, char *outputString)
-{
-  //I have to escape the quotes
-  sprintf(outputString,
-          "{"
-          "  \"messages\": ["
-          "      {"
-          "      "
-          "          \"content\": \"%s\","
-          "          \"destination_number\": \"%s\","
-          "          \"format\": \"SMS\""
-          "      }"
-          "  ]"
-          "}",
-          message, number);
-          //I need to put each individual line in an individual quote "line 1"
-  ESP_LOGI(TAG, "HTTP POST Body String = %s", outputString);
-
-}
 
 void onConnected(void *param)
 {
   while (true)
   {
     //It won't proceed any further until we get an ip address
-    if (xSemaphoreTake(onConnectionHandler, 10 * 1000 / portTICK_PERIOD_MS)) //We wait for 10 seconds
+    if (xSemaphoreTake(connectionSemaphore, 10 * 1000 / portTICK_PERIOD_MS)) //We wait for 10 seconds
     {
-      ESP_LOGI(TAG, "Processing");
-      struct fetchParams_t fetchParams;
-      fetchParams.OnGotData = OnGotData;
-      fetchParams.body = NULL;
-      fetchParams.headerCount = 0;
-      fetchParams.method = GET;
-      //do something useful and wait forever
-      fetch("https://quotes.rest/qod?language=en", &fetchParams);
-      //received ok, so we send sms
-      if (fetchParams.status == 200)
-      {
-        //send SMS
-        struct fetchParams_t smsStruct;
-        smsStruct.OnGotData = NULL;
-        smsStruct.OnGotData = NULL;
-        smsStruct.method = POST;
-
-        header_t headerContentType = {
-            .key = "Content-Type",
-            .val = "application/json"};
-
-        header_t headerAccept = {
-            .key = "Accept",
-            .val = "application/json"};
-
-        header_t headerAuthorization = {
-            .key = "Authorization",
-            .val = "Basic a3NScUxxOUZCeU9PbmVHVlJBSzA6aG5VMFJ5STVWcDJiRktSQWtIZEs5NmR6VnIzeTE3"};
-                   
-        smsStruct.header[0] = headerAuthorization;
-        smsStruct.header[1] = headerAccept;
-        smsStruct.header[2] = headerContentType;
-        smsStruct.headerCount = 3;
-
-        //Output buffer, I could use malloc()...
-        char buffer[1024];
-        //Populate the body of the message, we create a method
-        createBody(NUMBER, fetchParams.message, buffer);
-        smsStruct.body = buffer;
-        //We update out fetch.c to acomodate the new parameters
-        fetch("https://api.messagemedia.com/v1/messages", &smsStruct);
-
-      }
-      ESP_LOGI(TAG, "%s", fetchParams.message);
-      ESP_LOGI(TAG, "Done!");
+      //Do Some work --> Listen to URLs to come through
+      RegisterEndPoints();
+      char destination[1000];
+      memset(destination,0, 100);
+      readDatabase(destination);
       //Disconnect from the internet, switch of wifi
-      esp_wifi_disconnect();
+      //esp_wifi_disconnect();
       //Stop the execution of the program, wait forever so it doesn't get the information from the internet again
-      xSemaphoreTake(onConnectionHandler, portMAX_DELAY);
+      xSemaphoreTake(connectionSemaphore, portMAX_DELAY);
     }
 
     else
@@ -154,10 +72,150 @@ void onConnected(void *param)
 
 void app_main()
 {
-  onConnectionHandler = xSemaphoreCreateBinary();
+  esp_log_level_set(TAG, ESP_LOG_DEBUG);
+  connectionSemaphore = xSemaphoreCreateBinary();
   wifiInit();
   //1024 words * 5
-  xTaskCreate(&onConnected, "On Connected", 1024 * 5, NULL, 5, NULL);
+  xTaskCreate(&onConnected, "handle comms", 1024 * 5, NULL, 5, NULL);
+  xTaskCreate(&activateLM75A, "read temperature", 1024 *3, NULL, 4, NULL);
+
+
+
+
+  /**************************************************/
+  /******************* -  Download quote from the internet and send it over SMS using post request *******************/
+  /**************************************************/
+
+// #define TAG "DATA"
+// #define NUMBER "655807482"
+
+// xSemaphoreHandle onConnectionHandler;
+// int testextern;
+
+// void OnGotData(char *incomingBuffer, char *output)
+// {
+//   ESP_LOGI(TAG, "Parsing quote");
+//   //that gives the entire payload from bracket to bracket
+//   cJSON *payload = cJSON_Parse(incomingBuffer);
+//   //now we have to get the contents key
+//   cJSON *contents = cJSON_GetObjectItem(payload, "contents");
+//   cJSON *quotes = cJSON_GetObjectItem(contents, "quotes");
+//   cJSON *quotesElement;
+//   //Sometimes the content can be an array of quotes, so we have to iterate over the quotes array
+//   cJSON_ArrayForEach(quotesElement, quotes)
+//   {
+//     cJSON *quote = cJSON_GetObjectItem(quotesElement, "quote");
+//     ESP_LOGI(TAG, "Printing Final Quote");
+//     ESP_LOGI(TAG, "%s", quote->valuestring);
+//     strcpy(output, quote->valuestring);
+//   }
+//   //clean up the parent element and the child elements get cleaned automatically
+//   cJSON_Delete(payload);
+// }
+
+// //3 parameters, number, message out to create the string
+// // void createBody(char *number, char *message, char *outputString){
+// //   //Add JSON structure to the string, we can use cJSON (look at documentation) or we can do it as follows
+// void createBody(char *number, char *message, char *outputString)
+// {
+//   //I have to escape the quotes
+//   sprintf(outputString,
+//           "{"
+//           "  \"messages\": ["
+//           "      {"
+//           "      "
+//           "          \"content\": \"%s\","
+//           "          \"destination_number\": \"%s\","
+//           "          \"format\": \"SMS\""
+//           "      }"
+//           "  ]"
+//           "}",
+//           message, number);
+//           //I need to put each individual line in an individual quote "line 1"
+//   ESP_LOGI(TAG, "HTTP POST Body String = %s", outputString);
+
+// }
+
+// void onConnected(void *param)
+// {
+//   while (true)
+//   {
+//     //It won't proceed any further until we get an ip address
+//     if (xSemaphoreTake(onConnectionHandler, 10 * 1000 / portTICK_PERIOD_MS)) //We wait for 10 seconds
+//     {
+//       ESP_LOGI(TAG, "Processing");
+//       struct fetchParams_t fetchParams;
+//       fetchParams.OnGotData = OnGotData;
+//       fetchParams.body = NULL;
+//       fetchParams.headerCount = 0;
+//       fetchParams.method = GET;
+//       //do something useful and wait forever
+//       fetch("https://quotes.rest/qod?language=en", &fetchParams);
+//       //received ok, so we send sms
+//       if (fetchParams.status == 200)
+//       {
+//         //send SMS
+//         struct fetchParams_t smsStruct;
+//         smsStruct.OnGotData = NULL;
+//         smsStruct.OnGotData = NULL;
+//         smsStruct.method = POST;
+
+//         header_t headerContentType = {
+//             .key = "Content-Type",
+//             .val = "application/json"};
+
+//         header_t headerAccept = {
+//             .key = "Accept",
+//             .val = "application/json"};
+
+//         header_t headerAuthorization = {
+//             .key = "Authorization",
+//             .val = "Basic a3NScUxxOUZCeU9PbmVHVlJBSzA6aG5VMFJ5STVWcDJiRktSQWtIZEs5NmR6VnIzeTE3"};
+                   
+//         smsStruct.header[0] = headerAuthorization;
+//         smsStruct.header[1] = headerAccept;
+//         smsStruct.header[2] = headerContentType;
+//         smsStruct.headerCount = 3;
+
+//         //Output buffer, I could use malloc()...
+//         char buffer[1024];
+//         //Populate the body of the message, we create a method
+//         createBody(NUMBER, fetchParams.message, buffer);
+//         smsStruct.body = buffer;
+//         //We update out fetch.c to acomodate the new parameters
+//         fetch("https://api.messagemedia.com/v1/messages", &smsStruct);
+
+//       }
+//       ESP_LOGI(TAG, "%s", fetchParams.message);
+//       ESP_LOGI(TAG, "Done!");
+//       //Disconnect from the internet, switch of wifi
+//       esp_wifi_disconnect();
+//       //Stop the execution of the program, wait forever so it doesn't get the information from the internet again
+//       xSemaphoreTake(onConnectionHandler, portMAX_DELAY);
+//     }
+
+//     else
+//     {
+//       ESP_LOGE(TAG, "Failed to connect. Retry in");
+//       for (int i = 0; i < 5; i++)
+//       {
+//         ESP_LOGI(TAG, "...%d", i);
+//         vTaskDelay(1000 / portTICK_RATE_MS);
+//       }
+//       esp_restart();
+//       //the while loop will execute again
+//     }
+//   }
+// }
+
+// void app_main()
+// {
+//   onConnectionHandler = xSemaphoreCreateBinary();
+//   wifiInit();
+//   //1024 words * 5
+//   xTaskCreate(&onConnected, "On Connected", 1024 * 5, NULL, 5, NULL);
+
+
 
   /**************************************************/
   /******************* -  Wifi Connect to the Internet BOILERPLATE CODE *******************/

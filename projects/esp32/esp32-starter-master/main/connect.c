@@ -15,7 +15,7 @@
 
 char *TAG = "CONNECTION";
 
-extern xSemaphoreHandle onConnectionHandler;
+extern xSemaphoreHandle connectionSemaphore;
 extern int testextern;
 
 //Method used on the esp_event_loop_init() function on the wifiInit function
@@ -38,7 +38,7 @@ static esp_err_t event_handler(void *ctx, system_event_t *event)
     //Gives me back the amount of space left on the stack
     printf("stack space is %d\n", uxTaskGetStackHighWaterMark(NULL));
     //We give the seamaphore so the task can continue
-    xSemaphoreGive(onConnectionHandler);
+    xSemaphoreGive(connectionSemaphore);
     break;
 
   case SYSTEM_EVENT_STA_DISCONNECTED:

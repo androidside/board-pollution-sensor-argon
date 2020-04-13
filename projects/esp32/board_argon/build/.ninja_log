@@ -849,3 +849,17 @@
 491	1662	6082846751250843	esp-idf/esp32/ld/esp32.project.ld	1bb52d5268fd7a1c
 1664	2228	6082846756956833	esp32-starter-master.elf	b703c7c7532f830f
 2230	2439	6082846759120754	.bin_timestamp	ef988df9887d8e20
+18	5668	6083446815563096	build.ninja	fecbefae0d5a1ae
+64	158	6082846047391252	bootloader-prefix/src/bootloader-stamp/bootloader-build	ba542a2fea9e29a7
+64	158	6082846047391252	bootloader/bootloader.elf	ba542a2fea9e29a7
+64	158	6082846047391252	bootloader/bootloader.bin	ba542a2fea9e29a7
+64	158	6082846047391252	bootloader/bootloader.map	ba542a2fea9e29a7
+66	227	6083446818395528	esp-idf/app_update/CMakeFiles/__idf_app_update.dir/esp_app_desc.c.obj	8100fc3b67de347a
+73	283	0	esp-idf/main/CMakeFiles/spiffs_storage_bin	9729ef0ec5448f63
+228	317	6083446819293126	esp-idf/app_update/libapp_update.a	6bf2ff2b3eff43da
+320	503	6083446821138478	esp-idf/main/CMakeFiles/__idf_main.dir/argon_reading/reading.c.obj	317ff11d45e29684
+318	633	6083446822444698	esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj	ad45724554968ed1
+633	725	6083446823372220	esp-idf/main/libmain.a	ded591fa1e594927
+726	1941	6083446835440256	esp-idf/esp32/ld/esp32.project.ld	1bb52d5268fd7a1c
+1942	2619	6083446842261957	esp32-starter-master.elf	b703c7c7532f830f
+2652	2879	6083446844914699	.bin_timestamp	ef988df9887d8e20

@@ -71,8 +71,8 @@
                 "${IDF_PATH}/components/bt/host/nimble/nimble/nimble/host/services/gatt/include",
                 "${workspaceFolder}/components/myModule",
                 "${workspaceFolder}/components",
-                "${IDF_PATH}/examples/common_components/protocol_examples_common"
-
+                "${IDF_PATH}/examples/common_components/protocol_examples_common",
+                "C:/esp/esp-idf/components/esp_ringbuf/include"
             ],
             "defines": [],
             "cStandard": "c11",
