@@ -59,8 +59,6 @@ esp_err_t clientEventHandler(esp_http_client_event_t *evt)
     return ESP_OK;
 }
 
-//See format of payload received at the bottom of the document !!!!!!!!!!!!!!!!!!!
-
 void fetch(char *url, struct fetchParams_t *fetchParams)
 {
     esp_http_client_config_t clientConfig = {
@@ -70,36 +68,107 @@ void fetch(char *url, struct fetchParams_t *fetchParams)
 
     esp_http_client_handle_t client = esp_http_client_init(&clientConfig);
 
-    if(fetchParams->method == POST){
+    if (fetchParams->method == POST)
+    {
 
         esp_http_client_set_method(client, HTTP_METHOD_POST);
     }
 
+    //We set all the headers of the request
     for (int i = 0; i < fetchParams->headerCount; i++)
     {
         esp_http_client_set_header(client, fetchParams->header[i].key, fetchParams->header[i].val);
     }
 
-    if(fetchParams->body != NULL){
-
+    //We set the body of the request
+    if (fetchParams->body != NULL)
+    {
         esp_http_client_set_post_field(client, fetchParams->body, strlen(fetchParams->body));
     }
-    
+
     esp_err_t err = esp_http_client_perform(client);
-    fetchParams->status =  esp_http_client_get_status_code(client);
-    
+    fetchParams->status = esp_http_client_get_status_code(client);
+
     if (err == ESP_OK)
     {
-        ESP_LOGI(TAG, "HTTP GET status = %d, content_length = %d",
+        ESP_LOGI(TAG, "fetch() :  GET or POST HTTP status = %d, content_length = %d",
                  esp_http_client_get_status_code(client),
                  esp_http_client_get_content_length(client));
     }
     else
     {
-        ESP_LOGE(TAG, "HTTP GET request failed: %s", esp_err_to_name(err));
+        ESP_LOGE(TAG, "fetch() : HTTP GET or POST request failed: %s", esp_err_to_name(err));
     }
     esp_http_client_cleanup(client);
 }
+
+//Send reading struct over HTTP
+
+int postReading(struct reading_t *reading)
+{
+    ESP_LOGI(TAG, "Post Reading");
+
+    struct fetchParams_t fetchParams;
+    fetchParams.OnGotData = NULL;
+    fetchParams.headerCount = 0;
+    fetchParams.method = POST;
+
+    header_t headerContentType = {
+        .key = "Content-Type",
+        .val = "application/json"};
+
+
+    fetchParams.header[0] = headerContentType;
+    fetchParams.headerCount = 1;
+
+    //I cannot directly pass fetchParams.body because it is a pointer in memory, I would have to do a malloc. In this case I decide to create a buffer
+    char buffer[1024];
+    //Populate the body of the message, we create a method
+    createBodyReading(reading, buffer);
+    fetchParams.body = buffer ;
+    //We update out fetch.c to acomodate the new parameters
+    fetch("http://192.168.1.159:5000/postReadingESP32", &fetchParams);
+
+    ESP_LOGI(TAG, "postReading () : status code = %d", fetchParams.status);
+
+    return fetchParams.status;
+}
+
+//3 parameters, number, message out to create the string
+// void createBody(char *number, char *message, char *outputString){
+// Add JSON structure to the string, we can use cJSON (look at documentation) or we can do it as follows
+void createBodyReading(struct reading_t *reading, char *body)
+{
+    //I have to escape the quotes
+    //For formatting purposes on the sprintf() function I have to add quotes at the beginning and at the end of each line
+    sprintf(body,
+            "    {"
+            "   \"datetime\" : \"%s\",   "
+            "    \"intensity\" : \"%d\",   "
+            "    \"latitude\" : \"%f\",   "
+            "    \"longitude\" : \"%f\",   "
+            "    \"sensor_id\" : \"%d\"   "
+            "    }",
+            reading->datetime, reading->intensity, reading->latitude, reading->longitude, reading->sensor_id);
+    //I need to put each individual line in an individual quote "line 1"
+    ESP_LOGI(TAG, " createBodyReading() : HTTP POST Body String = %s", body);
+}
+
+//  void createBody(char *number, char *message, char *out)
+// {
+//   sprintf(out,
+//           "{"
+//           "  \"messages\": ["
+//           "      {"
+//           "      "
+//           "          \"content\": \"%s\","
+//           "          \"destination_number\": \"%s\","
+//           "          \"format\": \"SMS\""
+//           "      }"
+//           "  ]"
+//           "}",
+//           message, number);
+// }
 
 // I (3533) HTTPCLIENT: HTTP_EVENT_ON_FINISH
 // I (3543) HTTPCLIENT: {

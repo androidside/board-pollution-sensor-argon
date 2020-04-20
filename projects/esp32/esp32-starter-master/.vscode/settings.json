@@ -22,6 +22,7 @@
     "esp_wifi.h": "c",
     "algorithm": "c",
     "connect.h": "c",
-    "ios": "c"
+    "ios": "c",
+    "task.h": "c"
   }
 }

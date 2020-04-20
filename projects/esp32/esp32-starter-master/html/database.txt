@@ -1,4 +1,3 @@
-3
 '{\n    "datetime": "2020-04-11 07:06:28.205057",\n    "intensity": 10,\n    "latitude": 19.40417929694277,\n    "longitude": 64.53929710048422,\n    "sensor_id": 2\n}'
 '{\n    "datetime": "2020-04-11 07:06:28.205057",\n    "intensity": 20,\n    "latitude": 19.40417929694277,\n    "longitude": 64.53929710048422,\n    "sensor_id": 2\n}'
 '{\n    "datetime": "2020-04-11 07:06:28.205057",\n    "intensity": 30,\n    "latitude": 19.40417929694277,\n    "longitude": 64.53929710048422,\n    "sensor_id": 2\n}'

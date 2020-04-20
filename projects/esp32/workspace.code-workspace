@@ -5,6 +5,9 @@
 		},
 		{
 			"path": "esp32-starter-master"
+		},
+		{
+			"path": "..\\..\\SparkFun_Ublox_Arduino_Library-master\\SparkFun_Ublox_Arduino_Library-master"
 		}
 	],
 	"settings": {
@@ -55,7 +58,16 @@
 			"system_error": "c",
 			"*.ipp": "c",
 			"sstream": "c",
-			"strstream": "c"
+			"strstream": "c",
+			"unordered_map": "c",
+			"unordered_set": "c",
+			"bitset": "c",
+			"chrono": "c",
+			"__bit_reference": "c",
+			"map": "c",
+			"set": "c",
+			"ledc.h": "c",
+			"gps.h": "c"
 		}
 	}
 }

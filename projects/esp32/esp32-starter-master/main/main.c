@@ -32,166 +32,336 @@
 #include "server.h"
 #include "lm75a.h"
 #include "spiffs.h"
+#include "driver/i2c.h"
+#include <stdbool.h>
+
+
 
 #define TAG "DATA"
 
-xSemaphoreHandle connectionSemaphore;
+#include "gps.h"
 
+#define SDA_GPIO 15
+#define SCL_GPIO 2
+#define GPS_ADDRESS 0X42
+#define MAX_PAYLOAD_SIZE 256 //We need ~220 bytes for getProtocolVersion on most ublox modules
 
-void onConnected(void *param)
-{
-  while (true)
-  {
-    //It won't proceed any further until we get an ip address
-    if (xSemaphoreTake(connectionSemaphore, 10 * 1000 / portTICK_PERIOD_MS)) //We wait for 10 seconds
-    {
-      //Do Some work --> Listen to URLs to come through
-      RegisterEndPoints();
-      char destination[1000];
-      memset(destination,0, 100);
-      readDatabase(destination);
-      //Disconnect from the internet, switch of wifi
-      //esp_wifi_disconnect();
-      //Stop the execution of the program, wait forever so it doesn't get the information from the internet again
-      xSemaphoreTake(connectionSemaphore, portMAX_DELAY);
-    }
-
-    else
-    {
-      ESP_LOGE(TAG, "Failed to connect. Retry in");
-      for (int i = 0; i < 5; i++)
-      {
-        ESP_LOGI(TAG, "...%d", i);
-        vTaskDelay(1000 / portTICK_RATE_MS);
-      }
-      esp_restart();
-      //the while loop will execute again
-    }
-  }
-}
 
 void app_main()
 {
-  esp_log_level_set(TAG, ESP_LOG_DEBUG);
-  connectionSemaphore = xSemaphoreCreateBinary();
-  wifiInit();
-  //1024 words * 5
-  xTaskCreate(&onConnected, "handle comms", 1024 * 5, NULL, 5, NULL);
-  xTaskCreate(&activateLM75A, "read temperature", 1024 *3, NULL, 4, NULL);
+    //*--------------------------/*/
+    /*-    We just do it once    -*/
+    //*--------------------------/*/
+
+    i2c_config_t i2c_config = {
+        .mode = I2C_MODE_MASTER,
+        .sda_io_num = SDA_GPIO,
+        .scl_io_num = SCL_GPIO,
+        .sda_pullup_en = GPIO_PULLUP_ENABLE, //Required for both SDA and SCL
+        .scl_pullup_en = GPIO_PULLUP_ENABLE, //Required for both SDA and SCL
+        .master.clk_speed = 100000}; //Clock speed required if its a Master
+    i2c_param_config(I2C_NUM_0, &i2c_config); //use the first i2c bus with this particular configuration
+    i2c_driver_install(I2C_NUM_0, I2C_MODE_MASTER, 0, 0, 0); //We install the driver, and mention that we want to make it a master, the three 0,0,0 would be used if we want to use it as a slave
+
+    //*---------------------------------------------------/*/
+    /*-    We do it everytime we read the temperature    -*/
+    //*--------------------------------------------------/*/
+
+    uint8_t payloadCfg[MAX_PAYLOAD_SIZE];
+    ubxPacket ubxPacket;
+    ubxPacket packetCfg = {0, 0, 0, 0, 0, payloadCfg, 0, 0, SFE_UBLOX_PACKET_VALIDITY_NOT_DEFINED};
+
+
+    
+    uint8_t raw[2]; //Will be used to store the data
+    i2c_cmd_handle_t cmd_handle = i2c_cmd_link_create(); //can be utilized throughout an instruction of various different steps
+    i2c_master_start(cmd_handle); //We start the i2c bus
+
+
+    i2c_master_write_byte(cmd_handle, (GPS_ADDRESS << 1) | I2C_MASTER_READ, true); //we write to the i2c bus, the TRUE at the end means that we want an acknowledgement
+    // In short: we want to put a command on the line, the command is going to be  Read and we want an ACK
+    i2c_master_read(cmd_handle, (uint8_t *)&raw, 2, I2C_MASTER_ACK); //We read 2 bytes, because we expect to bytes (uint8_t) is a byte. raw declared above
+    i2c_master_stop(cmd_handle);//Up until this point we have just added a bunch of instructions to the command handle, next we are going to execute that command handle
+    i2c_master_cmd_begin(I2C_NUM_0, cmd_handle, 1000 / portTICK_PERIOD_MS); //Executre command handle on I2C number 0, the amount of time until it times out is 1000 ms
+    i2c_cmd_link_delete(cmd_handle); // delete command handle so we can free up some memory
+
+    //bit manipulation to get a readable temperature
+    bool isNeg = false;
+    if (raw[0] & 0x80)
+    {
+        isNeg = true;
+        raw[0] = raw[0] & 0x7f;
+    }
+
+    int16_t data = (raw[0] << 8 | raw[1]) >> 5; //bit manipulation to work with the x2 bytes more easily. We should get the first 11 bits and ignore the last 5 ones so we right shift the lst byte
+    float temperature = (data * 0.125) * (isNeg? -1 : 1); //Interesting statement
+    printf("temperature %f\n", temperature);
+
+    printf("Hello World!\n");
+
+
+//   /******************/
+//   //***** Setup *****//
+//   /******************/
+
+// //Constructor
+ 
+//  SFE_UBLOX_GPS::SFE_UBLOX_GPS(void)
+// {
+//   // Constructor
+//   currentGeofenceParams.numFences = 0; // Zero the number of geofences currently in use
+//   moduleQueried.versionNumber = false;
+
+//   if (checksumFailurePin >= 0)
+//   {
+//     pinMode((uint8_t)checksumFailurePin, OUTPUT);
+//     digitalWrite((uint8_t)checksumFailurePin, HIGH);
+//   }
+// }
+
+
+//   //if (myGPS.begin() == false) //Connect to the Ublox module using Wire port
+//     //isConnected()
+//       ////Returns true if I2C device ack's, we just send the address
+// boolean SFE_UBLOX_GPS::isConnected(uint16_t maxWait)
+// {
+//   if (commType == COMM_TYPE_I2C)
+//   {
+//     _i2cPort->beginTransmission((uint8_t)_gpsI2Caddress);
+//     return _i2cPort->endTransmission() == 0;
+//   }
+//   else if (commType == COMM_TYPE_SERIAL)
+//   {
+//     // Query navigation rate to see whether we get a meaningful response
+//     packetCfg.cls = UBX_CLASS_CFG;
+//     packetCfg.id = UBX_CFG_RATE;
+//     packetCfg.len = 0;
+//     packetCfg.startingSpot = 0;
+
+//     return (sendCommand(packetCfg, maxWait) == SFE_UBLOX_STATUS_DATA_RECEIVED); // We are polling the RATE so we expect data and an ACK
+//   }
+//   return false;
+// }
+
+
+// const uint8_t COM_TYPE_UBX = (1 << 0);
+
+//   myGPS.setI2COutput(COM_TYPE_UBX); //Set the I2C port to output UBX only (turn off NMEA noise)
+// //Configure a port to output UBX, NMEA, RTCM3 or a combination thereof
+// boolean SFE_UBLOX_GPS::setI2COutput(uint8_t comSettings, uint16_t maxWait)
+// {
+//   return (setPortOutput(COM_PORT_I2C, comSettings, maxWait));
+  
+// }
+
+// SetPortOutput
+
+// boolean SFE_UBLOX_GPS::setPortOutput(uint8_t portID, uint8_t outStreamSettings, uint16_t maxWait)
+// {
+//   //Get the current config values for this port ID
+//   if (getPortSettings(portID, maxWait) == false)
+//     return (false); //Something went wrong. Bail.
+
+//   if (commandAck != UBX_ACK_ACK)
+//   {
+//     if (_printDebug == true)
+//     {
+//       _debugSerial->println(F("setPortOutput failed to ACK"));
+//     }
+//     return (false);
+//   }
+
+//   packetCfg.cls = UBX_CLASS_CFG;
+//   packetCfg.id = UBX_CFG_PRT;
+//   packetCfg.len = 20;
+//   packetCfg.startingSpot = 0;
+
+//   //payloadCfg is now loaded with current bytes. Change only the ones we need to
+//   payloadCfg[14] = outStreamSettings; //OutProtocolMask LSB - Set outStream bits
+
+//   return ((sendCommand(packetCfg, maxWait)) == SFE_UBLOX_STATUS_DATA_SENT); // We are only expecting an ACK
+// }
+
+// //Loads the payloadCfg array with the current protocol bits located the UBX-CFG-PRT register for a given port
+// boolean SFE_UBLOX_GPS::getPortSettings(uint8_t portID, uint16_t maxWait)
+// {
+//   packetCfg.cls = UBX_CLASS_CFG;
+//   packetCfg.id = UBX_CFG_PRT;
+//   packetCfg.len = 1;
+//   packetCfg.startingSpot = 0;
+
+//   payloadCfg[0] = portID;
+
+//   return ((sendCommand(packetCfg, maxWait)) == SFE_UBLOX_STATUS_DATA_RECEIVED); // We are expecting data and an ACK
+// }
+
+
+// //send command
+
+
+// //Given a packet and payload, send everything including CRC bytes via I2C port
+// sfe_ublox_status_e SFE_UBLOX_GPS::sendCommand(ubxPacket outgoingUBX, uint16_t maxWait)
+// {
+//   sfe_ublox_status_e retVal = SFE_UBLOX_STATUS_SUCCESS;
+
+//   calcChecksum(&outgoingUBX); //Sets checksum A and B bytes of the packet
+
+//   if (_printDebug == true)
+//   {
+//     _debugSerial->print(F("\nSending: "));
+//     printPacket(&outgoingUBX);
+//   }
+
+//   if (commType == COMM_TYPE_I2C)
+//   {
+//     retVal = sendI2cCommand(outgoingUBX, maxWait);
+//     if (retVal != SFE_UBLOX_STATUS_SUCCESS)
+//     {
+//       if (_printDebug == true)
+//       {
+//         _debugSerial->println(F("Send I2C Command failed"));
+//       }
+//       return retVal;
+//     }
+//   }
+
+//   //Send i2c command above seems like the ESP32 call
+
+//   //Save configuration
+
+//   //Save current configuration to flash and BBR (battery backed RAM)
+// //This still works but it is the old way of configuring ublox modules. See getVal and setVal for the new methods
+// boolean SFE_UBLOX_GPS::saveConfiguration(uint16_t maxWait)
+// {
+//   packetCfg.cls = UBX_CLASS_CFG;
+//   packetCfg.id = UBX_CFG_CFG;
+//   packetCfg.len = 12;
+//   packetCfg.startingSpot = 0;
+
+//   //Clear packet payload
+//   for (uint8_t x = 0; x < packetCfg.len; x++)
+//     packetCfg.payload[x] = 0;
+
+//   packetCfg.payload[4] = 0xFF; //Set any bit in the saveMask field to save current config to Flash and BBR
+//   packetCfg.payload[5] = 0xFF;
+
+//   return (sendCommand(packetCfg, maxWait) == SFE_UBLOX_STATUS_DATA_SENT); // We are only expecting an ACK
+// }
+
+
+
+//   /******************/
+//   //***** Loop *****//
+//   /******************/
+
+//   // long latitude = myGPS.getLatitude();
+
+// //Get the current latitude in degrees
+// //Returns a long representing the number of degrees *10^-7
+// int32_t SFE_UBLOX_GPS::getLatitude(uint16_t maxWait)
+// {
+//   if (moduleQueried.latitude == false)
+//     getPVT(maxWait);
+//   moduleQueried.latitude = false; //Since we are about to give this to user, mark this data as stale
+//   moduleQueried.all = false;
+
+//   return (latitude);
+// }
+
+
+
+// //Get the latest Position/Velocity/Time solution and fill all global variables
+// boolean SFE_UBLOX_GPS::getPVT(uint16_t maxWait)
+// {
+//   if (autoPVT && autoPVTImplicitUpdate)
+//   {
+//     //The GPS is automatically reporting, we just check whether we got unread data
+//     if (_printDebug == true)
+//     {
+//       _debugSerial->println(F("getPVT: Autoreporting"));
+//     }
+//     checkUblox();
+//     return moduleQueried.all;
+//   }
+//   else if (autoPVT && !autoPVTImplicitUpdate)
+//   {
+//     //Someone else has to call checkUblox for us...
+//     if (_printDebug == true)
+//     {
+//       _debugSerial->println(F("getPVT: Exit immediately"));
+//     }
+//     return (false);
+//   }
+//   else
+//   {
+//     if (_printDebug == true)
+//     {
+//       _debugSerial->println(F("getPVT: Polling"));
+//     }
+
+//     //The GPS is not automatically reporting navigation position so we have to poll explicitly
+//     packetCfg.cls = UBX_CLASS_NAV;
+//     packetCfg.id = UBX_NAV_PVT;
+//     packetCfg.len = 0;
+//     //packetCfg.startingSpot = 20; //Begin listening at spot 20 so we can record up to 20+MAX_PAYLOAD_SIZE = 84 bytes Note:now hard-coded in processUBX
+
+//     //The data is parsed as part of processing the response
+//     sfe_ublox_status_e retVal = sendCommand(packetCfg, maxWait);
+
+//     if (retVal == SFE_UBLOX_STATUS_DATA_RECEIVED)
+//       return (true);
+
+//     if (_printDebug == true)
+//     {
+//       _debugSerial->print(F("getPVT retVal: "));
+//       _debugSerial->println(statusString(retVal));
+//     }
+//     return (false);
+//   }
+// }
+  
+  //long longitude = myGPS.getLongitude();
 
 
 
 
-  /**************************************************/
-  /******************* -  Download quote from the internet and send it over SMS using post request *******************/
-  /**************************************************/
+
+
+
+
+
+
+
+/************************************************************/
+/*                                                          */
+/*                        MAIN.C SERVER                     */
+/*                                                          */
+/************************************************************/
+
 
 // #define TAG "DATA"
-// #define NUMBER "655807482"
 
-// xSemaphoreHandle onConnectionHandler;
-// int testextern;
-
-// void OnGotData(char *incomingBuffer, char *output)
-// {
-//   ESP_LOGI(TAG, "Parsing quote");
-//   //that gives the entire payload from bracket to bracket
-//   cJSON *payload = cJSON_Parse(incomingBuffer);
-//   //now we have to get the contents key
-//   cJSON *contents = cJSON_GetObjectItem(payload, "contents");
-//   cJSON *quotes = cJSON_GetObjectItem(contents, "quotes");
-//   cJSON *quotesElement;
-//   //Sometimes the content can be an array of quotes, so we have to iterate over the quotes array
-//   cJSON_ArrayForEach(quotesElement, quotes)
-//   {
-//     cJSON *quote = cJSON_GetObjectItem(quotesElement, "quote");
-//     ESP_LOGI(TAG, "Printing Final Quote");
-//     ESP_LOGI(TAG, "%s", quote->valuestring);
-//     strcpy(output, quote->valuestring);
-//   }
-//   //clean up the parent element and the child elements get cleaned automatically
-//   cJSON_Delete(payload);
-// }
-
-// //3 parameters, number, message out to create the string
-// // void createBody(char *number, char *message, char *outputString){
-// //   //Add JSON structure to the string, we can use cJSON (look at documentation) or we can do it as follows
-// void createBody(char *number, char *message, char *outputString)
-// {
-//   //I have to escape the quotes
-//   sprintf(outputString,
-//           "{"
-//           "  \"messages\": ["
-//           "      {"
-//           "      "
-//           "          \"content\": \"%s\","
-//           "          \"destination_number\": \"%s\","
-//           "          \"format\": \"SMS\""
-//           "      }"
-//           "  ]"
-//           "}",
-//           message, number);
-//           //I need to put each individual line in an individual quote "line 1"
-//   ESP_LOGI(TAG, "HTTP POST Body String = %s", outputString);
-
-// }
+// xSemaphoreHandle connectionSemaphore;
 
 // void onConnected(void *param)
 // {
 //   while (true)
 //   {
 //     //It won't proceed any further until we get an ip address
-//     if (xSemaphoreTake(onConnectionHandler, 10 * 1000 / portTICK_PERIOD_MS)) //We wait for 10 seconds
+//     if (xSemaphoreTake(connectionSemaphore, 10 * 1000 / portTICK_PERIOD_MS)) //We wait for 10 seconds
 //     {
-//       ESP_LOGI(TAG, "Processing");
-//       struct fetchParams_t fetchParams;
-//       fetchParams.OnGotData = OnGotData;
-//       fetchParams.body = NULL;
-//       fetchParams.headerCount = 0;
-//       fetchParams.method = GET;
-//       //do something useful and wait forever
-//       fetch("https://quotes.rest/qod?language=en", &fetchParams);
-//       //received ok, so we send sms
-//       if (fetchParams.status == 200)
-//       {
-//         //send SMS
-//         struct fetchParams_t smsStruct;
-//         smsStruct.OnGotData = NULL;
-//         smsStruct.OnGotData = NULL;
-//         smsStruct.method = POST;
+//       //Do Some work --> Listen to URLs to come through
+//       //RegisterEndPoints();
+//      databaseReport();
+//      char *newJson = "'{\\n    \"datetime\": \"2020-04-11 07:06:28.205057\",\\n    \"intensity\": 40,\\n    \"latitude\": 19.40417929694277,\\n    \"longitude\": 64.53929710048422,\\n    \"sensor_id\": 2\\n}'";
+//      databaseAppendJson(newJson);
+//      databaseReport();
 
-//         header_t headerContentType = {
-//             .key = "Content-Type",
-//             .val = "application/json"};
 
-//         header_t headerAccept = {
-//             .key = "Accept",
-//             .val = "application/json"};
-
-//         header_t headerAuthorization = {
-//             .key = "Authorization",
-//             .val = "Basic a3NScUxxOUZCeU9PbmVHVlJBSzA6aG5VMFJ5STVWcDJiRktSQWtIZEs5NmR6VnIzeTE3"};
-                   
-//         smsStruct.header[0] = headerAuthorization;
-//         smsStruct.header[1] = headerAccept;
-//         smsStruct.header[2] = headerContentType;
-//         smsStruct.headerCount = 3;
-
-//         //Output buffer, I could use malloc()...
-//         char buffer[1024];
-//         //Populate the body of the message, we create a method
-//         createBody(NUMBER, fetchParams.message, buffer);
-//         smsStruct.body = buffer;
-//         //We update out fetch.c to acomodate the new parameters
-//         fetch("https://api.messagemedia.com/v1/messages", &smsStruct);
-
-//       }
-//       ESP_LOGI(TAG, "%s", fetchParams.message);
-//       ESP_LOGI(TAG, "Done!");
 //       //Disconnect from the internet, switch of wifi
-//       esp_wifi_disconnect();
+//       //esp_wifi_disconnect();
 //       //Stop the execution of the program, wait forever so it doesn't get the information from the internet again
-//       xSemaphoreTake(onConnectionHandler, portMAX_DELAY);
+//       xSemaphoreTake(connectionSemaphore, portMAX_DELAY);
 //     }
 
 //     else
@@ -210,12 +380,221 @@ void app_main()
 
 // void app_main()
 // {
-//   onConnectionHandler = xSemaphoreCreateBinary();
+//   esp_log_level_set(TAG, ESP_LOG_DEBUG);
+//   connectionSemaphore = xSemaphoreCreateBinary();
 //   wifiInit();
 //   //1024 words * 5
-//   xTaskCreate(&onConnected, "On Connected", 1024 * 5, NULL, 5, NULL);
+//   xTaskCreate(&onConnected, "handle comms", 1024 * 5, NULL, 5, NULL);
+//   xTaskCreate(&activateLM75A, "read temperature", 1024 * 3, NULL, 4, NULL);
 
 
+
+
+/************************************************************/
+/*                                                          */
+/*                        MAIN.C GPS                        */
+/*                                                          */
+/************************************************************/
+
+
+// #include "gps.h"
+
+// #define SDA_GPIO 15
+// #define SCL_GPIO 2
+// #define GPS_ADDRESS 0X42
+
+// void app_main()
+// {
+//     //*--------------------------/*/
+//     /*-    We just do it once    -*/
+//     //*--------------------------/*/
+
+//     i2c_config_t i2c_config = {
+//         .mode = I2C_MODE_MASTER,
+//         .sda_io_num = SDA_GPIO,
+//         .scl_io_num = SCL_GPIO,
+//         .sda_pullup_en = GPIO_PULLUP_ENABLE, //Required for both SDA and SCL
+//         .scl_pullup_en = GPIO_PULLUP_ENABLE, //Required for both SDA and SCL
+//         .master.clk_speed = 100000}; //Clock speed required if its a Master
+//     i2c_param_config(I2C_NUM_0, &i2c_config); //use the first i2c bus with this particular configuration
+//     i2c_driver_install(I2C_NUM_0, I2C_MODE_MASTER, 0, 0, 0); //We install the driver, and mention that we want to make it a master, the three 0,0,0 would be used if we want to use it as a slave
+
+//     //*---------------------------------------------------/*/
+//     /*-    We do it everytime we read the temperature    -*/
+//     //*--------------------------------------------------/*/
+    
+//     uint8_t raw[2]; //Will be used to store the data
+//     i2c_cmd_handle_t cmd_handle = i2c_cmd_link_create(); //can be utilized throughout an instruction of various different steps
+//     i2c_master_start(cmd_handle); //We start the i2c bus
+
+
+//     i2c_master_write_byte(cmd_handle, (GPS_ADDRESS << 1) | I2C_MASTER_READ, true); //we write to the i2c bus, the TRUE at the end means that we want an acknowledgement
+//     // In short: we want to put a command on the line, the command is going to be  Read and we want an ACK
+//     i2c_master_read(cmd_handle, (uint8_t *)&raw, 2, I2C_MASTER_ACK); //We read 2 bytes, because we expect to bytes (uint8_t) is a byte. raw declared above
+//     i2c_master_stop(cmd_handle);//Up until this point we have just added a bunch of instructions to the command handle, next we are going to execute that command handle
+//     i2c_master_cmd_begin(I2C_NUM_0, cmd_handle, 1000 / portTICK_PERIOD_MS); //Executre command handle on I2C number 0, the amount of time until it times out is 1000 ms
+//     i2c_cmd_link_delete(cmd_handle); // delete command handle so we can free up some memory
+
+//     //bit manipulation to get a readable temperature
+//     bool isNeg = false;
+//     if (raw[0] & 0x80)
+//     {
+//         isNeg = true;
+//         raw[0] = raw[0] & 0x7f;
+//     }
+
+//     int16_t data = (raw[0] << 8 | raw[1]) >> 5; //bit manipulation to work with the x2 bytes more easily. We should get the first 11 bits and ignore the last 5 ones so we right shift the lst byte
+//     float temperature = (data * 0.125) * (isNeg? -1 : 1); //Interesting statement
+//     printf("temperature %f\n", temperature);
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /**************************************************/
+  /******************* -  Download quote from the internet and send it over SMS using post request *******************/
+  /**************************************************/
+
+  // #define TAG "DATA"
+  // #define NUMBER "655807482"
+
+  // xSemaphoreHandle onConnectionHandler;
+  // int testextern;
+
+  // void OnGotData(char *incomingBuffer, char *output)
+  // {
+  //   ESP_LOGI(TAG, "Parsing quote");
+  //   //that gives the entire payload from bracket to bracket
+  //   cJSON *payload = cJSON_Parse(incomingBuffer);
+  //   //now we have to get the contents key
+  //   cJSON *contents = cJSON_GetObjectItem(payload, "contents");
+  //   cJSON *quotes = cJSON_GetObjectItem(contents, "quotes");
+  //   cJSON *quotesElement;
+  //   //Sometimes the content can be an array of quotes, so we have to iterate over the quotes array
+  //   cJSON_ArrayForEach(quotesElement, quotes)
+  //   {
+  //     cJSON *quote = cJSON_GetObjectItem(quotesElement, "quote");
+  //     ESP_LOGI(TAG, "Printing Final Quote");
+  //     ESP_LOGI(TAG, "%s", quote->valuestring);
+  //     strcpy(output, quote->valuestring);
+  //   }
+  //   //clean up the parent element and the child elements get cleaned automatically
+  //   cJSON_Delete(payload);
+  // }
+
+  // //3 parameters, number, message out to create the string
+  // // void createBody(char *number, char *message, char *outputString){
+  // //   //Add JSON structure to the string, we can use cJSON (look at documentation) or we can do it as follows
+  // void createBody(char *number, char *message, char *outputString)
+  // {
+  //   //I have to escape the quotes
+  //   sprintf(outputString,
+  //           "{"
+  //           "  \"messages\": ["
+  //           "      {"
+  //           "      "
+  //           "          \"content\": \"%s\","
+  //           "          \"destination_number\": \"%s\","
+  //           "          \"format\": \"SMS\""
+  //           "      }"
+  //           "  ]"
+  //           "}",
+  //           message, number);
+  //           //I need to put each individual line in an individual quote "line 1"
+  //   ESP_LOGI(TAG, "HTTP POST Body String = %s", outputString);
+
+  // }
+
+  // void onConnected(void *param)
+  // {
+  //   while (true)
+  //   {
+  //     //It won't proceed any further until we get an ip address
+  //     if (xSemaphoreTake(onConnectionHandler, 10 * 1000 / portTICK_PERIOD_MS)) //We wait for 10 seconds
+  //     {
+  //       ESP_LOGI(TAG, "Processing");
+  //       struct fetchParams_t fetchParams;
+  //       fetchParams.OnGotData = OnGotData;
+  //       fetchParams.body = NULL;
+  //       fetchParams.headerCount = 0;
+  //       fetchParams.method = GET;
+  //       //do something useful and wait forever
+  //       fetch("https://quotes.rest/qod?language=en", &fetchParams);
+  //       //received ok, so we send sms
+  //       if (fetchParams.status == 200)
+  //       {
+  //         //send SMS
+  //         struct fetchParams_t smsStruct;
+  //         smsStruct.OnGotData = NULL;
+  //         smsStruct.OnGotData = NULL;
+  //         smsStruct.method = POST;
+
+  //         header_t headerContentType = {
+  //             .key = "Content-Type",
+  //             .val = "application/json"};
+
+  //         header_t headerAccept = {
+  //             .key = "Accept",
+  //             .val = "application/json"};
+
+  //         header_t headerAuthorization = {
+  //             .key = "Authorization",
+  //             .val = "Basic a3NScUxxOUZCeU9PbmVHVlJBSzA6aG5VMFJ5STVWcDJiRktSQWtIZEs5NmR6VnIzeTE3"};
+
+  //         smsStruct.header[0] = headerAuthorization;
+  //         smsStruct.header[1] = headerAccept;
+  //         smsStruct.header[2] = headerContentType;
+  //         smsStruct.headerCount = 3;
+
+  //         //Output buffer, I could use malloc()...
+  //         char buffer[1024];
+  //         //Populate the body of the message, we create a method
+  //         createBody(NUMBER, fetchParams.message, buffer);
+  //         smsStruct.body = buffer;
+  //         //We update out fetch.c to acomodate the new parameters
+  //         fetch("https://api.messagemedia.com/v1/messages", &smsStruct);
+
+  //       }
+  //       ESP_LOGI(TAG, "%s", fetchParams.message);
+  //       ESP_LOGI(TAG, "Done!");
+  //       //Disconnect from the internet, switch of wifi
+  //       esp_wifi_disconnect();
+  //       //Stop the execution of the program, wait forever so it doesn't get the information from the internet again
+  //       xSemaphoreTake(onConnectionHandler, portMAX_DELAY);
+  //     }
+
+  //     else
+  //     {
+  //       ESP_LOGE(TAG, "Failed to connect. Retry in");
+  //       for (int i = 0; i < 5; i++)
+  //       {
+  //         ESP_LOGI(TAG, "...%d", i);
+  //         vTaskDelay(1000 / portTICK_RATE_MS);
+  //       }
+  //       esp_restart();
+  //       //the while loop will execute again
+  //     }
+  //   }
+  // }
+
+  // void app_main()
+  // {
+  //   onConnectionHandler = xSemaphoreCreateBinary();
+  //   wifiInit();
+  //   //1024 words * 5
+  //   xTaskCreate(&onConnected, "On Connected", 1024 * 5, NULL, 5, NULL);
 
   /**************************************************/
   /******************* -  Wifi Connect to the Internet BOILERPLATE CODE *******************/

@@ -27,44 +27,11 @@ void configure_spiffs()
   ESP_LOGI(TAG, "total = %d, used = %d", total, used);
 }
 
-int database_read_number_of_elements()
-{
-  int numberOfElements = -1; //We start it at -1
-  configure_spiffs();  
-  FILE *file = fopen("/spiffs/database.txt", "r");
-  if (file == NULL)
-  {
-    ESP_LOGE(TAG, "could not open the file");
-  }
-  else
-  {
-    char line[32];
-    if (fgets(line, sizeof(line), file) != NULL)
-    {
-      printf(line);
-      if (sscanf(line, "%d", &numberOfElements) != EOF)
-      {
-        ESP_LOGE(TAG, "Ther are %d elements in the database.txt", numberOfElements);
-      }
-      else
-      {
-        ESP_LOGE(TAG, "First value on database.txt is not an integer !");
-      }
-    }
-    else
-    {
-      ESP_LOGE(TAG, "File is empty !");
-    }
-    free(line);
-    fclose(file);
-  }
-  esp_vfs_spiffs_unregister(NULL); //the first partition can be called NULL!
-  return numberOfElements;
-}
 
 
-void database_read_json(char *destination)
+int databaseCountLines()
 {
+  int numberOfLines = 0; //We start it at -1
   configure_spiffs();
 
   FILE *file = fopen("/spiffs/database.txt", "r");
@@ -77,14 +44,82 @@ void database_read_json(char *destination)
     char line[256];
     while (fgets(line, sizeof(line), file) != NULL)
     {
-      printf(line);
-      strcat(destination, line);
+      numberOfLines++;
     }
 
-    free(line);
+    fclose(file);
+  }
+  ESP_LOGI(TAG, "Number of Lines = %d", numberOfLines);
+  esp_vfs_spiffs_unregister(NULL); //the first partition can be called NULL!
+  return numberOfLines;
+}
+
+void databaseReadJson(char *destination, int index)
+{
+  configure_spiffs();
+  int count = 0;
+
+  FILE *file = fopen("/spiffs/database.txt", "r");
+  if (file == NULL)
+  {
+    ESP_LOGE(TAG, "could not open the file");
+  }
+  else
+  {
+    char line[256];
+    while (fgets(line, sizeof(line), file) != NULL)
+    {
+      if (count == index)
+      {
+        strcat(destination, line);
+        break;
+      }
+      else
+      {
+        count++;
+      }
+    }
+
     fclose(file);
   }
   esp_vfs_spiffs_unregister(NULL); //the first partition can be called NULL!
+}
+
+void databaseAppendJson(char *newJson)
+{
+  configure_spiffs();
+  FILE *file = fopen("/spiffs/database.txt", "a");
+  if (file == NULL)
+  {
+    ESP_LOGE(TAG, "could not open the file");
+  }
+  else
+  {
+    fputs("\n", file);
+    fputs(newJson, file);
+  }
+  fclose(file);
+  esp_vfs_spiffs_unregister(NULL); //the first partition can be called NULL!  
+}
+
+void databaseReport()
+{
+  char destination[256];
+  memset(destination, 0, 256);
+  int numberOfLines = databaseCountLines();
+  if (numberOfLines > 0)
+  {
+    for (int index = 0; index < numberOfLines; index++)
+    {
+      databaseReadJson(destination, index);
+      ESP_LOGI(TAG, "Index = %d, Json = %s", index, destination);
+      memset(destination, 0, 256);
+    }
+  }
+  else
+  {
+    ESP_LOGE(TAG, "Number of elements = %d", numberOfLines);
+  }
 }
 
 // void writeDatabase(char *source)
@@ -143,7 +178,6 @@ void database_read_json(char *destination)
 //       strcat(destination, line);
 //     }
 
-//     free(line);
 //     fclose(file);
 //   }
 //   esp_vfs_spiffs_unregister(NULL); //the first partition can be called NULL!
@@ -180,3 +214,43 @@ void database_read_json(char *destination)
 
 // Result
 // Final destination string : |This is destinationThis is source|
+
+
+
+/**************************************************/
+/******************* -  Method to read the INTEGER at the beginning of the file *******************/
+/**************************************************/
+
+// int databaseReadCounter()
+// {
+//   int numberOfElements = -1; //We start it at -1
+//   configure_spiffs();
+//   FILE *file = fopen("/spiffs/database.txt", "r");
+//   if (file == NULL)
+//   {
+//     ESP_LOGE(TAG, "could not open the file");
+//   }
+//   else
+//   {
+//     char line[32];
+//     if (fgets(line, sizeof(line), file) != NULL)
+//     {
+//       printf(line);
+//       if (sscanf(line, "%d", &numberOfElements) != EOF)
+//       {
+//         ESP_LOGI(TAG, "There are %d elements in the database.txt", numberOfElements);
+//       }
+//       else
+//       {
+//         ESP_LOGE(TAG, "First value on database.txt is not an integer !");
+//       }
+//     }
+//     else
+//     {
+//       ESP_LOGE(TAG, "File is empty !");
+//     }
+//     fclose(file);
+//   }
+//   esp_vfs_spiffs_unregister(NULL); //the first partition can be called NULL!
+//   return numberOfElements;
+// }

@@ -1,5 +1,5 @@
 set(COMPONENT_SRCDIRS "." )
-# set(COMPONENT_SRCS "main.c" "fetch.c" "connect.c")
+# set(COMPONENT_SRCS "main.c" "fetch.c" "connect.c" "gps.c")
 set(COMPONENT_ADD_INCLUDEDIRS ".")
 
 set(COMPONENT_EMBED_TXTFILES

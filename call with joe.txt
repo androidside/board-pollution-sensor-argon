@@ -1,0 +1,38 @@
+Notes call with Joe
+
+Switch over to the c++ compiler
+
+Compile all the c code with C++ compiler with g++
+
+C is not a perfect subset of C++ so I will run into some issues
+
+Always use a g++ compiler
+
+Take the source code, I might need to wrap some things in the C code, if I call C code from CPP
+IF DEF C++ is defined within 
+Extern C, wrap the header file. 
+Class Foo
+methoid bar
+symbol name
+zcf7x
+
+I need to call C++ from C++ !
+Change my main.cpp bc I declare the .cpp object
+
+Not compile C++ and C
+
+Syntax between C and C++ 
+Pass a function pointer has to be typecasted
+
+Compiler
+Platform you are going to be runniung on
+What is the target architecture, which is noit windows is esp32
+
+-----------
+Steps:
+Where the compiler is being called in the toolchain ( go through CMAKE files)
+Replace the compiler definition (c=gcc) with g++
+
+Replace main with main.cpp or anywhere where I call or instantiate a c++ file, needs to be .cpp
+
+If the ESP idf library is only for C i might run into some small issues
