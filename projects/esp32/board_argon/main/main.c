@@ -50,7 +50,7 @@ void readSensors(void *params)
   while (true)
   {
     printMemory("readSensor", &readSensorsTaskHandle);
-    populateRandomReading(&reading);
+    populateDemoReadingRandom(&reading);
     ESP_LOGI(TAG, "Received Message");
     long ok = xQueueSend(queue, &reading, 1000 / portTICK_PERIOD_MS);
     if (ok)

@@ -10,6 +10,8 @@ typedef struct reading_t
     int intensity;
 } reading_t;
 
+void populateDemoReadingRandom(struct reading_t *reading);
+void populateDemoReading(struct reading_t *reading);
 void populateRandomReading(struct reading_t *reading);
 void populateCanonicalReading(struct reading_t *reading);
 void printReading(struct reading_t *reading);

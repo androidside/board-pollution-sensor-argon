@@ -99,6 +99,8 @@ void fetch(char *url, struct fetchParams_t *fetchParams)
     {
         ESP_LOGE(TAG, "fetch() : HTTP GET or POST request failed: %s", esp_err_to_name(err));
     }
+    
+    esp_http_client_close(client);
     esp_http_client_cleanup(client);
 }
 
@@ -106,17 +108,15 @@ void fetch(char *url, struct fetchParams_t *fetchParams)
 
 int postReading(struct reading_t *reading)
 {
-    ESP_LOGI(TAG, "Post Reading");
+    ESP_LOGI(TAG, "fetch.c : postReading()");
 
     struct fetchParams_t fetchParams;
     fetchParams.OnGotData = NULL;
-    fetchParams.headerCount = 0;
     fetchParams.method = POST;
 
     header_t headerContentType = {
         .key = "Content-Type",
         .val = "application/json"};
-
 
     fetchParams.header[0] = headerContentType;
     fetchParams.headerCount = 1;

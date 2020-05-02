@@ -841,3 +841,11 @@
 51229	51306	6089796093638631	CMakeFiles/esp32-starter-master.elf.dir/project_elf_src.c.obj	8c04e0dc7d6f7f3d
 51306	52153	6089796102046505	esp32-starter-master.elf	33544bbc79072f4b
 52154	52473	6089796105303099	.bin_timestamp	1df13bf71b571f14
+19	7683	6095873396514634	build.ninja	4a4260d326b2658e
+100	235	6089795982270225	bootloader-prefix/src/bootloader-stamp/bootloader-build	28986cfb166ff182
+100	235	6089795982270225	bootloader/bootloader.elf	28986cfb166ff182
+100	235	6089795982270225	bootloader/bootloader.bin	28986cfb166ff182
+100	235	6089795982270225	bootloader/bootloader.map	28986cfb166ff182
+119	395	0	esp-idf/main/CMakeFiles/spiffs_spiffs_bin	8102ceee7e587f93
+111	811	6095873405321310	esp-idf/app_update/CMakeFiles/__idf_app_update.dir/esp_app_desc.c.obj	bb6c3766c181d43d
+827	1221	6095873409420343	esp-idf/app_update/libapp_update.a	6bf2ff2b3eff43da
