@@ -31,8 +31,8 @@ What is the target architecture, which is noit windows is esp32
 -----------
 Steps:
 Where the compiler is being called in the toolchain ( go through CMAKE files)
-Replace the compiler definition (c=gcc) with g++
+Replace the compiler definition (c=gcc) with g++ : board_argon/.vscode/c_cpp_properties.json
 
 Replace main with main.cpp or anywhere where I call or instantiate a c++ file, needs to be .cpp
 
-If the ESP idf library is only for C i might run into some small issues
+If the ESP idf library is only for C it might run into some small issues

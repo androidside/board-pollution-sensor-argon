@@ -8,6 +8,12 @@ typedef struct reading_t
     float longitude;
     char datetime[300]; //Check actual size! It could be less than 300
     int intensity;
+    float vgas;
+    float vgas0;
+    float temperature;
+    float ppm;
+    int rgain;
+
 } reading_t;
 
 void populateDemoReadingRandom(struct reading_t *reading);

@@ -3,6 +3,8 @@
 #include "esp_system.h"
 #include "esp_log.h"
 #include "freertos/task.h"
+#include "no2.h"
+#include "lm75a.h"
 
 #define TAG_READING "READING"
 
@@ -55,12 +57,15 @@ void populateDemoReading(struct reading_t *reading)
 
 void populateDemoReadingRandom(struct reading_t *reading)
 {
-    ESP_LOGI(TAG_READING, "populating Demo Reading");
+    ESP_LOGI(TAG_READING, "populating Demo Reading Random");
     int randomSensorId = esp_random() % 3; //Random (0,2)
     //Common fields
     reading->sensor_id = randomSensorId;
     sprintf(reading->datetime, "DateTime UTC now");
-    reading->intensity = esp_random() % 99; //Random value between 0 and 98 = [0,98]
+    //reading->intensity = esp_random() % 99; //Random value between 0 and 98 = [0,98]
+    reading->intensity = (int) read_adc_reading_averaged();
+    reading->vgas = readvgas();
+    reading->temperature = readTemperature();
 
     //Fields that depend on the sensor
     switch (randomSensorId)

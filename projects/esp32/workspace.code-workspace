@@ -8,6 +8,9 @@
 		},
 		{
 			"path": "..\\..\\SparkFun_Ublox_Arduino_Library-master\\SparkFun_Ublox_Arduino_Library-master"
+		},
+		{
+			"path": "..\\..\\..\\..\\..\\..\\..\\esp\\esp-idf\\components\\esptool_py\\esptool"
 		}
 	],
 	"settings": {

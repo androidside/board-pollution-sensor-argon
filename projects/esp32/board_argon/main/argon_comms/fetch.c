@@ -127,7 +127,8 @@ int postReading(struct reading_t *reading)
     createBodyReading(reading, buffer);
     fetchParams.body = buffer ;
     //We update out fetch.c to acomodate the new parameters
-    fetch("http://192.168.1.159:5000/postReadingESP32", &fetchParams);
+    //fetch("http://192.168.1.159:5000/postReadingESP32", &fetchParams);
+    fetch("http://100.15.123.61:5001/postReadingESP32", &fetchParams);    
 
     ESP_LOGI(TAG, "postReading () : status code = %d", fetchParams.status);
 
@@ -147,11 +148,16 @@ void createBodyReading(struct reading_t *reading, char *body)
             "    \"intensity\" : \"%d\",   "
             "    \"latitude\" : \"%f\",   "
             "    \"longitude\" : \"%f\",   "
-            "    \"sensor_id\" : \"%d\"   "
+            "    \"sensor_id\" : \"%d\",   "
+            "   \"vgas\" : \"%f\",   "
+            "   \"vgas0\" : \"%f\",   "
+            "   \"temperature\" : \"%f\",   "
+            "   \"ppm\" : \"%f\",   "
+            "   \"rgain\" : \"%d\"   "
             "    }",
-            reading->datetime, reading->intensity, reading->latitude, reading->longitude, reading->sensor_id);
+            reading->datetime, reading->intensity, reading->latitude, reading->longitude, reading->sensor_id, reading->vgas, reading->vgas0, reading->temperature, reading->ppm, reading->rgain);
     //I need to put each individual line in an individual quote "line 1"
-    ESP_LOGI(TAG, " createBodyReading() : HTTP POST Body String = %s", body);
+    //ESP_LOGI(TAG, " createBodyReading() : HTTP POST Body String = %s", body);
 }
 
 //  void createBody(char *number, char *message, char *out)

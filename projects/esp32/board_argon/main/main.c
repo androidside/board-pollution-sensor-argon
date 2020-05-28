@@ -32,6 +32,8 @@
 #include "argon_reading/reading.h"
 #include "argon_monitoring/memory.h"
 #include "argon_comms/connect.h"
+#include "argon_reading/lm75a.h"
+#include "argon_reading/no2.h"
 
 #define TAG "TASKS"
 #define MAX_APs 20
@@ -61,7 +63,7 @@ void readSensors(void *params)
     {
       ESP_LOGE(TAG, "readSensors(): failed to add message to queue, saving in memory");
     }
-    vTaskDelay(5000 / portTICK_PERIOD_MS);
+    vTaskDelay(10000 / portTICK_PERIOD_MS);
     ESP_LOGI(TAG, "loopCounter_readSensors = %d", readSensorsLoopCounter++);
   }
 }
@@ -87,7 +89,7 @@ void onConnected(void *params)
 
         }
         else{
-            ESP_LOGI(TAG, "onConnected(): Reading Failed, saving to memory !!!");      
+            ESP_LOGE(TAG, "onConnected(): Reading Failed, saving to memory !!!");      
         }     
 
       }
@@ -95,7 +97,7 @@ void onConnected(void *params)
       {
         ESP_LOGE(TAG, "onConnected(): Failed to receive message");
       }
-      ESP_LOGI(TAG, "loopCounter_onConnected = %d", onConnectedLoopCounter++);
+     // ESP_LOGI(TAG, "loopCounter_onConnected = %d", onConnectedLoopCounter++);
     }
     else
     {
@@ -121,6 +123,10 @@ void app_main(void)
   queue = xQueueCreate(3, sizeof(struct reading_t));
   xTaskCreate(&readSensors, "create reading", 1024 * 8, NULL, 1, &readSensorsTaskHandle);
   xTaskCreate(&onConnected, "send reading over HTTP", 1024 * 10, NULL, 1, &onConnectedTaskHandle);
+  xTaskCreate(&activateLM75A, "read temperature", 1024 *4, NULL, 4, NULL);
+  xTaskCreate(&activateNO2, "read no2", 1024 *4, NULL, 5, NULL);
+
+
 
   /**************************************************/
   /******************* -  GET and POST request quote of the day BOILER Plate FINAL VERSION *******************/
