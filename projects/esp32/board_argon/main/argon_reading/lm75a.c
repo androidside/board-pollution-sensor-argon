@@ -33,7 +33,7 @@ void activateLM75A(void *params)
     i2c_driver_install(I2C_NUM_0, I2C_MODE_MASTER, 0, 0, 0);
 
     while(true){
-        uint8_t raw[2];
+        uint8_t raw[2] = {0,0};
         i2c_cmd_handle_t cmd_handle = i2c_cmd_link_create();
         i2c_master_start(cmd_handle);
         i2c_master_write_byte(cmd_handle, (LM75A_ADDRESS << 1) | I2C_MASTER_READ, true);
