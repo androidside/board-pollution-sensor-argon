@@ -239,6 +239,9 @@ LEGACY_INCLUDE_COMMON_HEADERS:UNINITIALIZED=
 MCONF:FILEPATH=C:/esp/tools/.espressif/tools/mconf/v4.6.0.0-idf-20190628/mconf-idf.exe
 
 //No help, variable specified on the command line.
+PYTHON:UNINITIALIZED=C:\esp\tools\.espressif\python_env\idf4.0_py3.6_env\Scripts\python.exe
+
+//No help, variable specified on the command line.
 PYTHON_DEPS_CHECKED:UNINITIALIZED=1
 
 //No help, variable specified on the command line.

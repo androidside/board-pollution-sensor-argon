@@ -9,6 +9,19 @@
     "*.md": "markdown",
     "*.mdx": "tdx",
     "stdio.h": "c",
-    "esp_log.h": "c"
+    "esp_log.h": "c",
+    "module.h": "c",
+    "string.h": "c",
+    "module_jordi.h": "c",
+    "__locale": "c",
+    "queue": "c",
+    "unistd.h": "c",
+    "dirent.h": "c",
+    "random": "c",
+    "protocol_examples_common.h": "c",
+    "esp_wifi.h": "c",
+    "algorithm": "c",
+    "connect.h": "c",
+    "ios": "c"
   }
 }

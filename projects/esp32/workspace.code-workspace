@@ -11,6 +11,17 @@
 		},
 		{
 			"path": "..\\..\\..\\..\\..\\..\\..\\esp\\esp-idf\\components\\esptool_py\\esptool"
+		},
+		{
+			"path": "hello_world"
+		},
+		{
+			"name": "pio_esp32",
+			"path": "..\\..\\platformio\\pio_esp32"
+		},
+		{
+			"name": "pio_arduino",
+			"path": "..\\..\\platformio\\pio_arduino"
 		}
 	],
 	"settings": {
@@ -70,7 +81,23 @@
 			"map": "c",
 			"set": "c",
 			"ledc.h": "c",
-			"gps.h": "c"
-		}
+			"gps.h": "c",
+			"u8g2.h": "c",
+			"spi_master.h": "c",
+			"u8g2_esp32_hal.h": "c",
+			"wire.h": "c",
+			"array": "cpp",
+			"deque": "cpp",
+			"list": "cpp",
+			"string": "cpp",
+			"vector": "cpp",
+			"string_view": "cpp",
+			"initializer_list": "cpp",
+			"__hash_table": "cpp",
+			"__split_buffer": "cpp",
+			"__tree": "cpp",
+			"iterator": "cpp"
+		},
+		"git.ignoreLimitWarning": true
 	}
 }

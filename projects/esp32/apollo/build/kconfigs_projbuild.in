@@ -1,0 +1,5 @@
+source "C:/esp/esp-idf/components/app_update/Kconfig.projbuild"
+source "C:/esp/esp-idf/components/bootloader/Kconfig.projbuild"
+source "C:/esp/esp-idf/components/esptool_py/Kconfig.projbuild"
+source "C:/esp/esp-idf/components/partition_table/Kconfig.projbuild"
+source "C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/apollo/apollo/main/Kconfig.projbuild"

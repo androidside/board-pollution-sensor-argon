@@ -1,0 +1,28 @@
+{
+  "terminal.integrated.shell.windows": "cmd.exe",
+  "terminal.integrated.shellArgs.windows": ["/k", "c:\\esp\\esp-idf\\export.bat"],
+  "terminal.integrated.shell.linux": "/bin/bash",
+  "terminal.integrated.shellArgs.linux": ["--init-file", "c:/esp/esp-idf/export.sh", "-i"],
+  "terminal.integrated.shell.osx": "/bin/bash",
+  "terminal.integrated.shellArgs.osx": ["--init-file", "c:/esp/esp-idf/export.sh", "-i"],
+  "files.associations": {
+    "*.md": "markdown",
+    "*.mdx": "tdx",
+    "stdio.h": "c",
+    "esp_log.h": "c",
+    "module.h": "c",
+    "string.h": "c",
+    "module_jordi.h": "c",
+    "__locale": "c",
+    "queue": "c",
+    "unistd.h": "c",
+    "dirent.h": "c",
+    "random": "c",
+    "protocol_examples_common.h": "c",
+    "esp_wifi.h": "c",
+    "algorithm": "c",
+    "connect.h": "c",
+    "ios": "c"
+  },
+  "C_Cpp.errorSquiggles": "Enabled"
+}

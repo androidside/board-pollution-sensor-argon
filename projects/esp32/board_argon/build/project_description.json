@@ -6,7 +6,7 @@
     "config_defaults":    "C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/board_argon/sdkconfig.defaults",
     "app_elf":            "esp32-starter-master.elf",
     "app_bin":            "esp32-starter-master.bin",
-    "git_revision":       "v4.0-dirty",
+    "git_revision":       "v4.0.1-dirty",
     "phy_data_partition": "",
     "monitor_baud" : "115200",
     "config_environment" : {

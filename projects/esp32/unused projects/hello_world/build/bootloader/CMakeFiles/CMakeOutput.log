@@ -11,7 +11,7 @@ The output was:
 
 Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
 
-The C compiler identification is GNU, found in "C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/hello_world/build/bootloader/CMakeFiles/3.13.4/CompilerIdC/a.out"
+The C compiler identification is GNU, found in "C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/unused projects/hello_world/build/bootloader/CMakeFiles/3.13.4/CompilerIdC/a.out"
 
 Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
 Compiler: C:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/xtensa-esp32-elf-g++.exe 
@@ -24,7 +24,7 @@ The output was:
 
 Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
 
-The CXX compiler identification is GNU, found in "C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/hello_world/build/bootloader/CMakeFiles/3.13.4/CompilerIdCXX/a.out"
+The CXX compiler identification is GNU, found in "C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/unused projects/hello_world/build/bootloader/CMakeFiles/3.13.4/CompilerIdCXX/a.out"
 
 Checking whether the ASM compiler is GNU using "--version" matched "(GNU assembler)|(GCC)|(Free Software Foundation)":
 xtensa-esp32-elf-gcc.exe (crosstool-NG esp-2019r2) 8.2.0
@@ -33,32 +33,32 @@ This is free software; see the source for copying conditions.  There is NO
 warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 Determining if the C compiler works passed with the following output:
-Change Dir: C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/hello_world/build/bootloader/CMakeFiles/CMakeTmp
+Change Dir: C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/unused projects/hello_world/build/bootloader/CMakeFiles/CMakeTmp
 
-Run Build Command:"C:/esp/tools/.espressif/tools/ninja/1.9.0/ninja.exe" "cmTC_81d2a"
-[1/2] Building C object CMakeFiles/cmTC_81d2a.dir/testCCompiler.c.obj
-[2/2] Linking C executable cmTC_81d2a
+Run Build Command:"C:/esp/tools/.espressif/tools/ninja/1.9.0/ninja.exe" "cmTC_eae0d"
+[1/2] Building C object CMakeFiles/cmTC_eae0d.dir/testCCompiler.c.obj
+[2/2] Linking C executable cmTC_eae0d
 
-C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY ls = dir/B 
+C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\unused projects\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY ls = dir/B 
 
-C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY board = cd C:\cygwin64\home\Sauron\git\board_argon 
+C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\unused projects\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY board = cd C:\cygwin64\home\Sauron\git\board_argon 
 
-C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY esp = cd C:\esp 
+C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\unused projects\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY esp = cd C:\esp 
 c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/8.2.0/../../../../xtensa-esp32-elf/bin/ld.exe: warning: cannot find entry symbol _start; defaulting to 00400054
 
 
 Detecting C compiler ABI info compiled with the following output:
-Change Dir: C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/hello_world/build/bootloader/CMakeFiles/CMakeTmp
+Change Dir: C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/unused projects/hello_world/build/bootloader/CMakeFiles/CMakeTmp
 
-Run Build Command:"C:/esp/tools/.espressif/tools/ninja/1.9.0/ninja.exe" "cmTC_0caa5"
-[1/2] Building C object CMakeFiles/cmTC_0caa5.dir/CMakeCCompilerABI.c.obj
-[2/2] Linking C executable cmTC_0caa5
+Run Build Command:"C:/esp/tools/.espressif/tools/ninja/1.9.0/ninja.exe" "cmTC_82abd"
+[1/2] Building C object CMakeFiles/cmTC_82abd.dir/CMakeCCompilerABI.c.obj
+[2/2] Linking C executable cmTC_82abd
 
-C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY ls = dir/B 
+C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\unused projects\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY ls = dir/B 
 
-C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY board = cd C:\cygwin64\home\Sauron\git\board_argon 
+C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\unused projects\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY board = cd C:\cygwin64\home\Sauron\git\board_argon 
 
-C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY esp = cd C:\esp 
+C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\unused projects\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY esp = cd C:\esp 
 Using built-in specs.
 COLLECT_GCC=C:\esp\tools\.espressif\tools\xtensa-esp32-elf\esp-2019r2-8.2.0\xtensa-esp32-elf\bin\xtensa-esp32-elf-gcc.exe
 COLLECT_LTO_WRAPPER=c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../libexec/gcc/xtensa-esp32-elf/8.2.0/lto-wrapper.exe
@@ -68,25 +68,25 @@ Thread model: posix
 gcc version 8.2.0 (crosstool-NG esp-2019r2) 
 COMPILER_PATH=c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../libexec/gcc/xtensa-esp32-elf/8.2.0/;c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../libexec/gcc/;c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/8.2.0/../../../../xtensa-esp32-elf/bin/
 LIBRARY_PATH=c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/8.2.0/;c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../lib/gcc/;c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/8.2.0/../../../../xtensa-esp32-elf/lib/
-COLLECT_GCC_OPTIONS='-mlongcalls' '-Wno-frame-address' '-nostdlib' '-v' '-o' 'cmTC_0caa5'
- c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../libexec/gcc/xtensa-esp32-elf/8.2.0/collect2.exe -plugin c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../libexec/gcc/xtensa-esp32-elf/8.2.0/liblto_plugin-0.dll -plugin-opt=c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../libexec/gcc/xtensa-esp32-elf/8.2.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\Users\Sauron\AppData\Local\Temp\ccPGU6sq.res -o cmTC_0caa5 -Lc:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/8.2.0 -Lc:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../lib/gcc -Lc:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/8.2.0/../../../../xtensa-esp32-elf/lib CMakeFiles/cmTC_0caa5.dir/CMakeCCompilerABI.c.obj
+COLLECT_GCC_OPTIONS='-mlongcalls' '-Wno-frame-address' '-nostdlib' '-v' '-o' 'cmTC_82abd'
+ c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../libexec/gcc/xtensa-esp32-elf/8.2.0/collect2.exe -plugin c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../libexec/gcc/xtensa-esp32-elf/8.2.0/liblto_plugin-0.dll -plugin-opt=c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../libexec/gcc/xtensa-esp32-elf/8.2.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\Users\Sauron\AppData\Local\Temp\cc1bQKNF.res -o cmTC_82abd -Lc:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/8.2.0 -Lc:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../lib/gcc -Lc:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/8.2.0/../../../../xtensa-esp32-elf/lib CMakeFiles/cmTC_82abd.dir/CMakeCCompilerABI.c.obj
 c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/8.2.0/../../../../xtensa-esp32-elf/bin/ld.exe: warning: cannot find entry symbol _start; defaulting to 00400054
-COLLECT_GCC_OPTIONS='-mlongcalls' '-Wno-frame-address' '-nostdlib' '-v' '-o' 'cmTC_0caa5'
+COLLECT_GCC_OPTIONS='-mlongcalls' '-Wno-frame-address' '-nostdlib' '-v' '-o' 'cmTC_82abd'
 
 
 Parsed C implicit link information from above output:
   link line regex: [^( *|.*[/\])(xtensa-esp32-elf-ld\.exe|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
-  ignore line: [Change Dir: C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/hello_world/build/bootloader/CMakeFiles/CMakeTmp]
+  ignore line: [Change Dir: C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/unused projects/hello_world/build/bootloader/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command:"C:/esp/tools/.espressif/tools/ninja/1.9.0/ninja.exe" "cmTC_0caa5"]
-  ignore line: [[1/2] Building C object CMakeFiles/cmTC_0caa5.dir/CMakeCCompilerABI.c.obj]
-  ignore line: [[2/2] Linking C executable cmTC_0caa5]
+  ignore line: [Run Build Command:"C:/esp/tools/.espressif/tools/ninja/1.9.0/ninja.exe" "cmTC_82abd"]
+  ignore line: [[1/2] Building C object CMakeFiles/cmTC_82abd.dir/CMakeCCompilerABI.c.obj]
+  ignore line: [[2/2] Linking C executable cmTC_82abd]
   ignore line: []
-  ignore line: [C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY ls = dir/B ]
+  ignore line: [C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\unused projects\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY ls = dir/B ]
   ignore line: []
-  ignore line: [C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY board = cd C:\cygwin64\home\Sauron\git\board_argon ]
+  ignore line: [C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\unused projects\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY board = cd C:\cygwin64\home\Sauron\git\board_argon ]
   ignore line: []
-  ignore line: [C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY esp = cd C:\esp ]
+  ignore line: [C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\unused projects\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY esp = cd C:\esp ]
   ignore line: [Using built-in specs.]
   ignore line: [COLLECT_GCC=C:\esp\tools\.espressif\tools\xtensa-esp32-elf\esp-2019r2-8.2.0\xtensa-esp32-elf\bin\xtensa-esp32-elf-gcc.exe]
   ignore line: [COLLECT_LTO_WRAPPER=c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../libexec/gcc/xtensa-esp32-elf/8.2.0/lto-wrapper.exe]
@@ -100,19 +100,19 @@ Parsed C implicit link information from above output:
   ignore line: [LIBRARY_PATH=c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/8.2.0/]
   ignore line: [c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../lib/gcc/]
   ignore line: [c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/8.2.0/../../../../xtensa-esp32-elf/lib/]
-  ignore line: [COLLECT_GCC_OPTIONS='-mlongcalls' '-Wno-frame-address' '-nostdlib' '-v' '-o' 'cmTC_0caa5']
-  link line: [ c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../libexec/gcc/xtensa-esp32-elf/8.2.0/collect2.exe -plugin c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../libexec/gcc/xtensa-esp32-elf/8.2.0/liblto_plugin-0.dll -plugin-opt=c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../libexec/gcc/xtensa-esp32-elf/8.2.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\Users\Sauron\AppData\Local\Temp\ccPGU6sq.res -o cmTC_0caa5 -Lc:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/8.2.0 -Lc:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../lib/gcc -Lc:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/8.2.0/../../../../xtensa-esp32-elf/lib CMakeFiles/cmTC_0caa5.dir/CMakeCCompilerABI.c.obj]
+  ignore line: [COLLECT_GCC_OPTIONS='-mlongcalls' '-Wno-frame-address' '-nostdlib' '-v' '-o' 'cmTC_82abd']
+  link line: [ c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../libexec/gcc/xtensa-esp32-elf/8.2.0/collect2.exe -plugin c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../libexec/gcc/xtensa-esp32-elf/8.2.0/liblto_plugin-0.dll -plugin-opt=c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../libexec/gcc/xtensa-esp32-elf/8.2.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\Users\Sauron\AppData\Local\Temp\cc1bQKNF.res -o cmTC_82abd -Lc:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/8.2.0 -Lc:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../lib/gcc -Lc:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/8.2.0/../../../../xtensa-esp32-elf/lib CMakeFiles/cmTC_82abd.dir/CMakeCCompilerABI.c.obj]
     arg [c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../libexec/gcc/xtensa-esp32-elf/8.2.0/collect2.exe] ==> ignore
     arg [-plugin] ==> ignore
     arg [c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../libexec/gcc/xtensa-esp32-elf/8.2.0/liblto_plugin-0.dll] ==> ignore
     arg [-plugin-opt=c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../libexec/gcc/xtensa-esp32-elf/8.2.0/lto-wrapper.exe] ==> ignore
-    arg [-plugin-opt=-fresolution=C:\Users\Sauron\AppData\Local\Temp\ccPGU6sq.res] ==> ignore
+    arg [-plugin-opt=-fresolution=C:\Users\Sauron\AppData\Local\Temp\cc1bQKNF.res] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_0caa5] ==> ignore
+    arg [cmTC_82abd] ==> ignore
     arg [-Lc:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/8.2.0] ==> dir [c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/8.2.0]
     arg [-Lc:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../lib/gcc] ==> dir [c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../lib/gcc]
     arg [-Lc:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/8.2.0/../../../../xtensa-esp32-elf/lib] ==> dir [c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/8.2.0/../../../../xtensa-esp32-elf/lib]
-    arg [CMakeFiles/cmTC_0caa5.dir/CMakeCCompilerABI.c.obj] ==> ignore
+    arg [CMakeFiles/cmTC_82abd.dir/CMakeCCompilerABI.c.obj] ==> ignore
   collapse library dir [c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/8.2.0] ==> [C:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/lib/gcc/xtensa-esp32-elf/8.2.0]
   collapse library dir [c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../lib/gcc] ==> [C:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/lib/gcc]
   collapse library dir [c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/8.2.0/../../../../xtensa-esp32-elf/lib] ==> [C:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/xtensa-esp32-elf/lib]
@@ -124,17 +124,17 @@ Parsed C implicit link information from above output:
 
 
 Detecting C [-std=c11] compiler features compiled with the following output:
-Change Dir: C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/hello_world/build/bootloader/CMakeFiles/CMakeTmp
+Change Dir: C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/unused projects/hello_world/build/bootloader/CMakeFiles/CMakeTmp
 
-Run Build Command:"C:/esp/tools/.espressif/tools/ninja/1.9.0/ninja.exe" "cmTC_2c18e"
-[1/2] Building C object CMakeFiles/cmTC_2c18e.dir/feature_tests.c.obj
-[2/2] Linking C executable cmTC_2c18e
+Run Build Command:"C:/esp/tools/.espressif/tools/ninja/1.9.0/ninja.exe" "cmTC_f5ad0"
+[1/2] Building C object CMakeFiles/cmTC_f5ad0.dir/feature_tests.c.obj
+[2/2] Linking C executable cmTC_f5ad0
 
-C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY ls = dir/B 
+C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\unused projects\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY ls = dir/B 
 
-C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY board = cd C:\cygwin64\home\Sauron\git\board_argon 
+C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\unused projects\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY board = cd C:\cygwin64\home\Sauron\git\board_argon 
 
-C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY esp = cd C:\esp 
+C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\unused projects\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY esp = cd C:\esp 
 c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/8.2.0/../../../../xtensa-esp32-elf/bin/ld.exe: warning: cannot find entry symbol _start; defaulting to 00400054
 
 
@@ -145,17 +145,17 @@ c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf
 
 
 Detecting C [-std=c99] compiler features compiled with the following output:
-Change Dir: C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/hello_world/build/bootloader/CMakeFiles/CMakeTmp
+Change Dir: C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/unused projects/hello_world/build/bootloader/CMakeFiles/CMakeTmp
 
-Run Build Command:"C:/esp/tools/.espressif/tools/ninja/1.9.0/ninja.exe" "cmTC_46c7b"
-[1/2] Building C object CMakeFiles/cmTC_46c7b.dir/feature_tests.c.obj
-[2/2] Linking C executable cmTC_46c7b
+Run Build Command:"C:/esp/tools/.espressif/tools/ninja/1.9.0/ninja.exe" "cmTC_a3e53"
+[1/2] Building C object CMakeFiles/cmTC_a3e53.dir/feature_tests.c.obj
+[2/2] Linking C executable cmTC_a3e53
 
-C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY ls = dir/B 
+C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\unused projects\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY ls = dir/B 
 
-C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY board = cd C:\cygwin64\home\Sauron\git\board_argon 
+C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\unused projects\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY board = cd C:\cygwin64\home\Sauron\git\board_argon 
 
-C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY esp = cd C:\esp 
+C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\unused projects\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY esp = cd C:\esp 
 c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/8.2.0/../../../../xtensa-esp32-elf/bin/ld.exe: warning: cannot find entry symbol _start; defaulting to 00400054
 
 
@@ -166,17 +166,17 @@ c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf
 
 
 Detecting C [-std=c90] compiler features compiled with the following output:
-Change Dir: C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/hello_world/build/bootloader/CMakeFiles/CMakeTmp
+Change Dir: C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/unused projects/hello_world/build/bootloader/CMakeFiles/CMakeTmp
 
-Run Build Command:"C:/esp/tools/.espressif/tools/ninja/1.9.0/ninja.exe" "cmTC_7c641"
-[1/2] Building C object CMakeFiles/cmTC_7c641.dir/feature_tests.c.obj
-[2/2] Linking C executable cmTC_7c641
+Run Build Command:"C:/esp/tools/.espressif/tools/ninja/1.9.0/ninja.exe" "cmTC_ec745"
+[1/2] Building C object CMakeFiles/cmTC_ec745.dir/feature_tests.c.obj
+[2/2] Linking C executable cmTC_ec745
 
-C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY ls = dir/B 
+C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\unused projects\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY ls = dir/B 
 
-C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY board = cd C:\cygwin64\home\Sauron\git\board_argon 
+C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\unused projects\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY board = cd C:\cygwin64\home\Sauron\git\board_argon 
 
-C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY esp = cd C:\esp 
+C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\unused projects\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY esp = cd C:\esp 
 c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/8.2.0/../../../../xtensa-esp32-elf/bin/ld.exe: warning: cannot find entry symbol _start; defaulting to 00400054
 
 
@@ -185,32 +185,32 @@ c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf
     Feature record: C_FEATURE:0c_static_assert
     Feature record: C_FEATURE:0c_variadic_macros
 Determining if the CXX compiler works passed with the following output:
-Change Dir: C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/hello_world/build/bootloader/CMakeFiles/CMakeTmp
+Change Dir: C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/unused projects/hello_world/build/bootloader/CMakeFiles/CMakeTmp
 
-Run Build Command:"C:/esp/tools/.espressif/tools/ninja/1.9.0/ninja.exe" "cmTC_e7401"
-[1/2] Building CXX object CMakeFiles/cmTC_e7401.dir/testCXXCompiler.cxx.obj
-[2/2] Linking CXX executable cmTC_e7401
+Run Build Command:"C:/esp/tools/.espressif/tools/ninja/1.9.0/ninja.exe" "cmTC_72607"
+[1/2] Building CXX object CMakeFiles/cmTC_72607.dir/testCXXCompiler.cxx.obj
+[2/2] Linking CXX executable cmTC_72607
 
-C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY ls = dir/B 
+C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\unused projects\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY ls = dir/B 
 
-C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY board = cd C:\cygwin64\home\Sauron\git\board_argon 
+C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\unused projects\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY board = cd C:\cygwin64\home\Sauron\git\board_argon 
 
-C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY esp = cd C:\esp 
+C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\unused projects\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY esp = cd C:\esp 
 c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/8.2.0/../../../../xtensa-esp32-elf/bin/ld.exe: warning: cannot find entry symbol _start; defaulting to 00400054
 
 
 Detecting CXX compiler ABI info compiled with the following output:
-Change Dir: C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/hello_world/build/bootloader/CMakeFiles/CMakeTmp
+Change Dir: C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/unused projects/hello_world/build/bootloader/CMakeFiles/CMakeTmp
 
-Run Build Command:"C:/esp/tools/.espressif/tools/ninja/1.9.0/ninja.exe" "cmTC_59633"
-[1/2] Building CXX object CMakeFiles/cmTC_59633.dir/CMakeCXXCompilerABI.cpp.obj
-[2/2] Linking CXX executable cmTC_59633
+Run Build Command:"C:/esp/tools/.espressif/tools/ninja/1.9.0/ninja.exe" "cmTC_eeead"
+[1/2] Building CXX object CMakeFiles/cmTC_eeead.dir/CMakeCXXCompilerABI.cpp.obj
+[2/2] Linking CXX executable cmTC_eeead
 
-C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY ls = dir/B 
+C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\unused projects\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY ls = dir/B 
 
-C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY board = cd C:\cygwin64\home\Sauron\git\board_argon 
+C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\unused projects\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY board = cd C:\cygwin64\home\Sauron\git\board_argon 
 
-C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY esp = cd C:\esp 
+C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\unused projects\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY esp = cd C:\esp 
 Using built-in specs.
 COLLECT_GCC=C:\esp\tools\.espressif\tools\xtensa-esp32-elf\esp-2019r2-8.2.0\xtensa-esp32-elf\bin\xtensa-esp32-elf-g++.exe
 COLLECT_LTO_WRAPPER=c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../libexec/gcc/xtensa-esp32-elf/8.2.0/lto-wrapper.exe
@@ -220,25 +220,25 @@ Thread model: posix
 gcc version 8.2.0 (crosstool-NG esp-2019r2) 
 COMPILER_PATH=c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../libexec/gcc/xtensa-esp32-elf/8.2.0/;c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../libexec/gcc/;c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/8.2.0/../../../../xtensa-esp32-elf/bin/
 LIBRARY_PATH=c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/8.2.0/;c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../lib/gcc/;c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/8.2.0/../../../../xtensa-esp32-elf/lib/
-COLLECT_GCC_OPTIONS='-mlongcalls' '-Wno-frame-address' '-nostdlib' '-v' '-o' 'cmTC_59633'
- c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../libexec/gcc/xtensa-esp32-elf/8.2.0/collect2.exe -plugin c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../libexec/gcc/xtensa-esp32-elf/8.2.0/liblto_plugin-0.dll -plugin-opt=c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../libexec/gcc/xtensa-esp32-elf/8.2.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\Users\Sauron\AppData\Local\Temp\ccKjR1Tj.res -o cmTC_59633 -Lc:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/8.2.0 -Lc:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../lib/gcc -Lc:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/8.2.0/../../../../xtensa-esp32-elf/lib CMakeFiles/cmTC_59633.dir/CMakeCXXCompilerABI.cpp.obj
+COLLECT_GCC_OPTIONS='-mlongcalls' '-Wno-frame-address' '-nostdlib' '-v' '-o' 'cmTC_eeead'
+ c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../libexec/gcc/xtensa-esp32-elf/8.2.0/collect2.exe -plugin c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../libexec/gcc/xtensa-esp32-elf/8.2.0/liblto_plugin-0.dll -plugin-opt=c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../libexec/gcc/xtensa-esp32-elf/8.2.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\Users\Sauron\AppData\Local\Temp\ccIwYIDY.res -o cmTC_eeead -Lc:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/8.2.0 -Lc:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../lib/gcc -Lc:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/8.2.0/../../../../xtensa-esp32-elf/lib CMakeFiles/cmTC_eeead.dir/CMakeCXXCompilerABI.cpp.obj
 c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/8.2.0/../../../../xtensa-esp32-elf/bin/ld.exe: warning: cannot find entry symbol _start; defaulting to 00400054
-COLLECT_GCC_OPTIONS='-mlongcalls' '-Wno-frame-address' '-nostdlib' '-v' '-o' 'cmTC_59633'
+COLLECT_GCC_OPTIONS='-mlongcalls' '-Wno-frame-address' '-nostdlib' '-v' '-o' 'cmTC_eeead'
 
 
 Parsed CXX implicit link information from above output:
   link line regex: [^( *|.*[/\])(xtensa-esp32-elf-ld\.exe|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
-  ignore line: [Change Dir: C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/hello_world/build/bootloader/CMakeFiles/CMakeTmp]
+  ignore line: [Change Dir: C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/unused projects/hello_world/build/bootloader/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command:"C:/esp/tools/.espressif/tools/ninja/1.9.0/ninja.exe" "cmTC_59633"]
-  ignore line: [[1/2] Building CXX object CMakeFiles/cmTC_59633.dir/CMakeCXXCompilerABI.cpp.obj]
-  ignore line: [[2/2] Linking CXX executable cmTC_59633]
+  ignore line: [Run Build Command:"C:/esp/tools/.espressif/tools/ninja/1.9.0/ninja.exe" "cmTC_eeead"]
+  ignore line: [[1/2] Building CXX object CMakeFiles/cmTC_eeead.dir/CMakeCXXCompilerABI.cpp.obj]
+  ignore line: [[2/2] Linking CXX executable cmTC_eeead]
   ignore line: []
-  ignore line: [C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY ls = dir/B ]
+  ignore line: [C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\unused projects\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY ls = dir/B ]
   ignore line: []
-  ignore line: [C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY board = cd C:\cygwin64\home\Sauron\git\board_argon ]
+  ignore line: [C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\unused projects\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY board = cd C:\cygwin64\home\Sauron\git\board_argon ]
   ignore line: []
-  ignore line: [C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY esp = cd C:\esp ]
+  ignore line: [C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\unused projects\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY esp = cd C:\esp ]
   ignore line: [Using built-in specs.]
   ignore line: [COLLECT_GCC=C:\esp\tools\.espressif\tools\xtensa-esp32-elf\esp-2019r2-8.2.0\xtensa-esp32-elf\bin\xtensa-esp32-elf-g++.exe]
   ignore line: [COLLECT_LTO_WRAPPER=c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../libexec/gcc/xtensa-esp32-elf/8.2.0/lto-wrapper.exe]
@@ -252,19 +252,19 @@ Parsed CXX implicit link information from above output:
   ignore line: [LIBRARY_PATH=c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/8.2.0/]
   ignore line: [c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../lib/gcc/]
   ignore line: [c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/8.2.0/../../../../xtensa-esp32-elf/lib/]
-  ignore line: [COLLECT_GCC_OPTIONS='-mlongcalls' '-Wno-frame-address' '-nostdlib' '-v' '-o' 'cmTC_59633']
-  link line: [ c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../libexec/gcc/xtensa-esp32-elf/8.2.0/collect2.exe -plugin c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../libexec/gcc/xtensa-esp32-elf/8.2.0/liblto_plugin-0.dll -plugin-opt=c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../libexec/gcc/xtensa-esp32-elf/8.2.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\Users\Sauron\AppData\Local\Temp\ccKjR1Tj.res -o cmTC_59633 -Lc:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/8.2.0 -Lc:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../lib/gcc -Lc:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/8.2.0/../../../../xtensa-esp32-elf/lib CMakeFiles/cmTC_59633.dir/CMakeCXXCompilerABI.cpp.obj]
+  ignore line: [COLLECT_GCC_OPTIONS='-mlongcalls' '-Wno-frame-address' '-nostdlib' '-v' '-o' 'cmTC_eeead']
+  link line: [ c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../libexec/gcc/xtensa-esp32-elf/8.2.0/collect2.exe -plugin c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../libexec/gcc/xtensa-esp32-elf/8.2.0/liblto_plugin-0.dll -plugin-opt=c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../libexec/gcc/xtensa-esp32-elf/8.2.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\Users\Sauron\AppData\Local\Temp\ccIwYIDY.res -o cmTC_eeead -Lc:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/8.2.0 -Lc:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../lib/gcc -Lc:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/8.2.0/../../../../xtensa-esp32-elf/lib CMakeFiles/cmTC_eeead.dir/CMakeCXXCompilerABI.cpp.obj]
     arg [c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../libexec/gcc/xtensa-esp32-elf/8.2.0/collect2.exe] ==> ignore
     arg [-plugin] ==> ignore
     arg [c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../libexec/gcc/xtensa-esp32-elf/8.2.0/liblto_plugin-0.dll] ==> ignore
     arg [-plugin-opt=c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../libexec/gcc/xtensa-esp32-elf/8.2.0/lto-wrapper.exe] ==> ignore
-    arg [-plugin-opt=-fresolution=C:\Users\Sauron\AppData\Local\Temp\ccKjR1Tj.res] ==> ignore
+    arg [-plugin-opt=-fresolution=C:\Users\Sauron\AppData\Local\Temp\ccIwYIDY.res] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_59633] ==> ignore
+    arg [cmTC_eeead] ==> ignore
     arg [-Lc:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/8.2.0] ==> dir [c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/8.2.0]
     arg [-Lc:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../lib/gcc] ==> dir [c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../lib/gcc]
     arg [-Lc:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/8.2.0/../../../../xtensa-esp32-elf/lib] ==> dir [c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/8.2.0/../../../../xtensa-esp32-elf/lib]
-    arg [CMakeFiles/cmTC_59633.dir/CMakeCXXCompilerABI.cpp.obj] ==> ignore
+    arg [CMakeFiles/cmTC_eeead.dir/CMakeCXXCompilerABI.cpp.obj] ==> ignore
   collapse library dir [c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/8.2.0] ==> [C:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/lib/gcc/xtensa-esp32-elf/8.2.0]
   collapse library dir [c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../lib/gcc] ==> [C:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/lib/gcc]
   collapse library dir [c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/8.2.0/../../../../xtensa-esp32-elf/lib] ==> [C:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/xtensa-esp32-elf/lib]
@@ -276,17 +276,17 @@ Parsed CXX implicit link information from above output:
 
 
 Detecting CXX [-std=c++2a] compiler features compiled with the following output:
-Change Dir: C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/hello_world/build/bootloader/CMakeFiles/CMakeTmp
+Change Dir: C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/unused projects/hello_world/build/bootloader/CMakeFiles/CMakeTmp
 
-Run Build Command:"C:/esp/tools/.espressif/tools/ninja/1.9.0/ninja.exe" "cmTC_a0db9"
-[1/2] Building CXX object CMakeFiles/cmTC_a0db9.dir/feature_tests.cxx.obj
-[2/2] Linking CXX executable cmTC_a0db9
+Run Build Command:"C:/esp/tools/.espressif/tools/ninja/1.9.0/ninja.exe" "cmTC_4af6b"
+[1/2] Building CXX object CMakeFiles/cmTC_4af6b.dir/feature_tests.cxx.obj
+[2/2] Linking CXX executable cmTC_4af6b
 
-C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY ls = dir/B 
+C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\unused projects\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY ls = dir/B 
 
-C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY board = cd C:\cygwin64\home\Sauron\git\board_argon 
+C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\unused projects\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY board = cd C:\cygwin64\home\Sauron\git\board_argon 
 
-C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY esp = cd C:\esp 
+C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\unused projects\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY esp = cd C:\esp 
 c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/8.2.0/../../../../xtensa-esp32-elf/bin/ld.exe: warning: cannot find entry symbol _start; defaulting to 00400054
 
 
@@ -350,17 +350,17 @@ c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf
 
 
 Detecting CXX [-std=c++17] compiler features compiled with the following output:
-Change Dir: C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/hello_world/build/bootloader/CMakeFiles/CMakeTmp
+Change Dir: C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/unused projects/hello_world/build/bootloader/CMakeFiles/CMakeTmp
 
-Run Build Command:"C:/esp/tools/.espressif/tools/ninja/1.9.0/ninja.exe" "cmTC_d3f01"
-[1/2] Building CXX object CMakeFiles/cmTC_d3f01.dir/feature_tests.cxx.obj
-[2/2] Linking CXX executable cmTC_d3f01
+Run Build Command:"C:/esp/tools/.espressif/tools/ninja/1.9.0/ninja.exe" "cmTC_dc46e"
+[1/2] Building CXX object CMakeFiles/cmTC_dc46e.dir/feature_tests.cxx.obj
+[2/2] Linking CXX executable cmTC_dc46e
 
-C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY ls = dir/B 
+C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\unused projects\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY ls = dir/B 
 
-C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY board = cd C:\cygwin64\home\Sauron\git\board_argon 
+C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\unused projects\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY board = cd C:\cygwin64\home\Sauron\git\board_argon 
 
-C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY esp = cd C:\esp 
+C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\unused projects\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY esp = cd C:\esp 
 c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/8.2.0/../../../../xtensa-esp32-elf/bin/ld.exe: warning: cannot find entry symbol _start; defaulting to 00400054
 
 
@@ -424,17 +424,17 @@ c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf
 
 
 Detecting CXX [-std=c++14] compiler features compiled with the following output:
-Change Dir: C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/hello_world/build/bootloader/CMakeFiles/CMakeTmp
+Change Dir: C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/unused projects/hello_world/build/bootloader/CMakeFiles/CMakeTmp
 
-Run Build Command:"C:/esp/tools/.espressif/tools/ninja/1.9.0/ninja.exe" "cmTC_9ed50"
-[1/2] Building CXX object CMakeFiles/cmTC_9ed50.dir/feature_tests.cxx.obj
-[2/2] Linking CXX executable cmTC_9ed50
+Run Build Command:"C:/esp/tools/.espressif/tools/ninja/1.9.0/ninja.exe" "cmTC_a594e"
+[1/2] Building CXX object CMakeFiles/cmTC_a594e.dir/feature_tests.cxx.obj
+[2/2] Linking CXX executable cmTC_a594e
 
-C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY ls = dir/B 
+C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\unused projects\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY ls = dir/B 
 
-C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY board = cd C:\cygwin64\home\Sauron\git\board_argon 
+C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\unused projects\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY board = cd C:\cygwin64\home\Sauron\git\board_argon 
 
-C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY esp = cd C:\esp 
+C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\unused projects\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY esp = cd C:\esp 
 c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/8.2.0/../../../../xtensa-esp32-elf/bin/ld.exe: warning: cannot find entry symbol _start; defaulting to 00400054
 
 
@@ -498,17 +498,17 @@ c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf
 
 
 Detecting CXX [-std=c++11] compiler features compiled with the following output:
-Change Dir: C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/hello_world/build/bootloader/CMakeFiles/CMakeTmp
+Change Dir: C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/unused projects/hello_world/build/bootloader/CMakeFiles/CMakeTmp
 
-Run Build Command:"C:/esp/tools/.espressif/tools/ninja/1.9.0/ninja.exe" "cmTC_f1fc1"
-[1/2] Building CXX object CMakeFiles/cmTC_f1fc1.dir/feature_tests.cxx.obj
-[2/2] Linking CXX executable cmTC_f1fc1
+Run Build Command:"C:/esp/tools/.espressif/tools/ninja/1.9.0/ninja.exe" "cmTC_f84db"
+[1/2] Building CXX object CMakeFiles/cmTC_f84db.dir/feature_tests.cxx.obj
+[2/2] Linking CXX executable cmTC_f84db
 
-C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY ls = dir/B 
+C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\unused projects\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY ls = dir/B 
 
-C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY board = cd C:\cygwin64\home\Sauron\git\board_argon 
+C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\unused projects\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY board = cd C:\cygwin64\home\Sauron\git\board_argon 
 
-C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY esp = cd C:\esp 
+C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\unused projects\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY esp = cd C:\esp 
 c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/8.2.0/../../../../xtensa-esp32-elf/bin/ld.exe: warning: cannot find entry symbol _start; defaulting to 00400054
 
 
@@ -572,17 +572,17 @@ c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf
 
 
 Detecting CXX [-std=c++98] compiler features compiled with the following output:
-Change Dir: C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/hello_world/build/bootloader/CMakeFiles/CMakeTmp
+Change Dir: C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/unused projects/hello_world/build/bootloader/CMakeFiles/CMakeTmp
 
-Run Build Command:"C:/esp/tools/.espressif/tools/ninja/1.9.0/ninja.exe" "cmTC_a6929"
-[1/2] Building CXX object CMakeFiles/cmTC_a6929.dir/feature_tests.cxx.obj
-[2/2] Linking CXX executable cmTC_a6929
+Run Build Command:"C:/esp/tools/.espressif/tools/ninja/1.9.0/ninja.exe" "cmTC_3c7db"
+[1/2] Building CXX object CMakeFiles/cmTC_3c7db.dir/feature_tests.cxx.obj
+[2/2] Linking CXX executable cmTC_3c7db
 
-C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY ls = dir/B 
+C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\unused projects\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY ls = dir/B 
 
-C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY board = cd C:\cygwin64\home\Sauron\git\board_argon 
+C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\unused projects\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY board = cd C:\cygwin64\home\Sauron\git\board_argon 
 
-C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY esp = cd C:\esp 
+C:\cygwin64\home\Sauron\git\board_argon\projects\esp32\unused projects\hello_world\build\bootloader\CMakeFiles\CMakeTmp>DOSKEY esp = cd C:\esp 
 c:/esp/tools/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/8.2.0/../../../../xtensa-esp32-elf/bin/ld.exe: warning: cannot find entry symbol _start; defaulting to 00400054
 
 

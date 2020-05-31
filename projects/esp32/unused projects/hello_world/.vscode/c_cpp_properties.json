@@ -68,27 +68,14 @@
                 "${IDF_PATH}/components/bt/host/nimble/nimble/nimble/host/util/include",
                 "${IDF_PATH}/components/bt/host/nimble/port/include",
                 "${IDF_PATH}/components/bt/host/nimble/nimble/nimble/host/services/gap/include",
-                "${IDF_PATH}/components/bt/host/nimble/nimble/nimble/host/services/gatt/include"
+                "${IDF_PATH}/components/bt/host/nimble/nimble/nimble/host/services/gatt/include",
+                "${IDF_PATH}/examples/common_components/protocol_examples_common"
             ],
             "defines": [],
             "cStandard": "c11",
             "cppStandard": "c++17",
-            "intelliSenseMode": "clang-x64"
-        },
-        {
-            "name": "tutorial",
-            "includePath": [
-                "${workspaceFolder}/**"
-            ],
-            "defines": [
-                "_DEBUG",
-                "UNICODE",
-                "_UNICODE"
-            ],
-            "compilerPath": "C:\\cygwin64\\bin\\gcc.exe",
-            "cStandard": "c11",
-            "cppStandard": "c++17",
-            "intelliSenseMode": "gcc-x64"
+            "intelliSenseMode": "clang-x64",
+            "compileCommands": "C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/unused projects/hello_world/build/compile_commands.json"
         }
     ],
     "version": 4

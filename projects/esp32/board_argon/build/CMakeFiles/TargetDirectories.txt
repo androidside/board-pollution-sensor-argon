@@ -7,6 +7,8 @@ C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/board_argon/build/CMakeFi
 C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/board_argon/build/CMakeFiles/flash.dir
 C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/board_argon/build/CMakeFiles/monitor.dir
 C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/board_argon/build/CMakeFiles/app-flash.dir
+C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/board_argon/build/CMakeFiles/encrypted-flash.dir
+C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/board_argon/build/CMakeFiles/encrypted-app-flash.dir
 C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/board_argon/build/CMakeFiles/_project_elf_src.dir
 C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/board_argon/build/CMakeFiles/esp32-starter-master.elf.dir
 C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/board_argon/build/CMakeFiles/size.dir

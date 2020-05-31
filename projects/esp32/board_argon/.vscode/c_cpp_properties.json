@@ -77,7 +77,7 @@
             "cStandard": "c11",
             "cppStandard": "c++17",
             "intelliSenseMode": "clang-x64",
-            "compileCommands": "${workspaceFolder}/build/compile_commands.json"
+            "compileCommands": "C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/hello_world/build/compile_commands.json"
         },
         {
             "name": "tutorial",
