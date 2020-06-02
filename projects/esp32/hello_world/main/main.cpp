@@ -1,38 +1,59 @@
-#include <driver/gpio.h>
-#include <driver/spi_master.h>
-#include <esp_log.h>
-#include <freertos/FreeRTOS.h>
-#include <freertos/task.h>
-#include <stdio.h>
-#include <string.h>
-//#include <u8g2.h>
-
-
+//file: main.cpp
+#include "Arduino.h"
 #include <Wire.h> //Needed for I2C to GPS
-#include "SparkFun_Ublox_Arduino_Library.h" //Click here to get the library: http://librarymanager/All#SparkFun_Ublox_GPS
 
-#define PIN_CLK 14
-#define PIN_MOSI 13
-#define PIN_RESET 26
-#define PIN_DC 27
-#define PIN_CS 15
+#include "SparkFun_Ublox_Arduino_Library.h" //http://librarymanager/All#SparkFun_Ublox_GPS
+#include "Adafruit_ADS1015.h"
 
 
-
+#define TAG "Example"
 SFE_UBLOX_GPS myGPS;
+Adafruit_ADS1015 ads;     /* Use thi for the 12-bit version */
 
+long lastTime = 0; //Simple local timer. Limits amount if I2C traffic to Ublox module.
 
-extern "C"
+extern "C" void app_main()
 {
-    void app_main();
-}
+    //initArduino();
+    printf("Hello World no initArduino() from the HELLO WORLD PROGRAM! \n");
+    pinMode(4, OUTPUT);
+    digitalWrite(4, HIGH);
+    //do your own thing
 
-void app_main(void)
 
-{ 	Serial.begin(115200);
-  	Serial.println("SparkFun Ublox Example");
-    Wire.begin();
+    printf("SparkFun Ublox Example");
 
-    delay(250); //Don't pound too hard on the I2C bus
+    Wire.begin(15,4); // begin(sda,scl) --> SDA Blue cable, SCL Yellow cable
 
+    if (myGPS.begin() == false) //Connect to the Ublox module using Wire port
+    {
+        printf("Ublox GPS not detected at default I2C address. Please check wiring. Freezing.");
+        
+    }
+
+    myGPS.setI2COutput(COM_TYPE_UBX); //Set the I2C port to output UBX only (turn off NMEA noise)
+    myGPS.saveConfiguration();        //Save the current settings to flash and BBR
+
+    while (true)
+    {
+        //Query module only every second. Doing it more often will just cause I2C traffic.
+        //The module only responds when a new position is available
+        if (millis() - lastTime > 2000)
+        {
+            lastTime = millis(); //Update the timer
+
+            long latitude = myGPS.getLatitude();
+           printf("Lat: %ld", latitude);
+
+            long longitude = myGPS.getLongitude();
+           printf(" Long:  %ld", longitude);
+           printf(" (degrees * 10^-7)");
+
+            long altitude = myGPS.getAltitude();
+           printf(" Alt:  %ld", altitude);
+           printf(" (mm)");
+
+           printf("\n");
+        }
+    }
 }

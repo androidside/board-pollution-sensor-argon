@@ -11,8 +11,8 @@ long lastTime = 0; //Simple local timer. Limits amount if I2C traffic to Ublox m
 
 extern "C" void app_main()
 {
-    initArduino();
-    printf("Hello World This i arduino talking\n");
+    //initArduino();
+    printf("Hello World no initArduino() was called\n");
     pinMode(4, OUTPUT);
     digitalWrite(4, HIGH);
     //do your own thing
