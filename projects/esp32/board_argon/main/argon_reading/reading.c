@@ -5,6 +5,7 @@
 #include "freertos/task.h"
 #include "no2.h"
 #include "lm75a.h"
+#include "gpsapi.h"
 
 #define TAG_READING "READING"
 
@@ -30,7 +31,7 @@ void populateDemoReading(struct reading_t *reading)
     int randomSensorId = esp_random() % 3; //Random (0,2)
     //Common fields
     reading->sensor_id = randomSensorId;
-    sprintf(reading->datetime, "DateTime UTC now");
+    sprintf(reading->datetime, getdatetime());
 
     //Fields that depend on the sensor
     switch (randomSensorId)
@@ -61,30 +62,33 @@ void populateDemoReadingRandom(struct reading_t *reading)
     int randomSensorId = esp_random() % 3; //Random (0,2)
     //Common fields
     reading->sensor_id = randomSensorId;
-    sprintf(reading->datetime, "DateTime UTC now");
+    sprintf(reading->datetime, getdatetime());
     //reading->intensity = esp_random() % 99; //Random value between 0 and 98 = [0,98]
     reading->intensity = (int) read_adc_reading_averaged();
     reading->vgas = readvgas();
     reading->temperature = readTemperature();
 
     //Fields that depend on the sensor
-    switch (randomSensorId)
-    {
-    case 0:
-        reading->latitude = coords_pontiac[0];
-        reading->longitude = coords_pontiac[1];
-        break;
-    case 1:
-        reading->latitude = coords_greenbelt[0];
-        reading->longitude = coords_greenbelt[1];
-        break;
-    case 2:
-        reading->latitude = coords_gsfc[0];
-        reading->longitude = coords_gsfc[1];
-        break;
-    default:
-        break;
-    }
+    // switch (randomSensorId)
+    // {
+    // case 0:
+    //     reading->latitude = coords_pontiac[0];
+    //     reading->longitude = coords_pontiac[1];
+    //     break;
+    // case 1:
+    //     reading->latitude = coords_greenbelt[0];
+    //     reading->longitude = coords_greenbelt[1];
+    //     break;
+    // case 2:
+    //     reading->latitude = coords_gsfc[0];
+    //     reading->longitude = coords_gsfc[1];
+    //     break;
+    // default:
+    //     break;
+    // }
+
+    reading->latitude = getlatitude();
+    reading->longitude = getlongitude();
     
 }
 

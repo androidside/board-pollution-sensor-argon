@@ -34,6 +34,7 @@
 #include "argon_comms/connect.h"
 #include "argon_reading/lm75a.h"
 #include "argon_reading/no2.h"
+#include "argon_reading/gpsapi.h"
 
 #define TAG "TASKS"
 #define MAX_APs 20
@@ -116,15 +117,20 @@ void onConnected(void *params)
   }
 }
 
-void app_main(void)
+void app_main()
 {
+  xTaskCreate(&activateGPS, "read gps", 1024 * 8, NULL, 5, NULL);
+  vTaskDelay(5000 / portTICK_RATE_MS);
+
   onConnectionHandler = xSemaphoreCreateBinary();
   wifiInit();
   queue = xQueueCreate(3, sizeof(struct reading_t));
   xTaskCreate(&readSensors, "create reading", 1024 * 8, NULL, 1, &readSensorsTaskHandle);
   xTaskCreate(&onConnected, "send reading over HTTP", 1024 * 10, NULL, 1, &onConnectedTaskHandle);
   xTaskCreate(&activateLM75A, "read temperature", 1024 *4, NULL, 4, NULL);
-  xTaskCreate(&activateNO2, "read no2", 1024 *4, NULL, 5, NULL);
+  xTaskCreate(&activateNO2, "read no2", 1024 *3, NULL, 5, NULL);
+  
+
 
 
 

@@ -56,5 +56,8 @@ C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/board_argon/build/esp-idf
 C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/board_argon/build/esp-idf/unity/libunity.a
 C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/board_argon/build/esp-idf/wifi_provisioning/libwifi_provisioning.a
 C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/board_argon/build/esp-idf/main/libmain.a
+C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/board_argon/build/esp-idf/arduino/libarduino.a
+C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/board_argon/build/esp-idf/Adafruit_ADS1X15/libAdafruit_ADS1X15.a
+C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/board_argon/build/esp-idf/SparkFun_Ublox_Arduino_Library/libSparkFun_Ublox_Arduino_Library.a
 C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/board_argon/build/esp-idf/myModule/libmyModule.a
 C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/board_argon/build/esp-idf/protocol_examples_common/libprotocol_examples_common.a

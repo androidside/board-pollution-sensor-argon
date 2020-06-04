@@ -102,6 +102,7 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   include("C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/hello_world/build/esp-idf/arduino/cmake_install.cmake")
   include("C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/hello_world/build/esp-idf/Adafruit_ADS1X15/cmake_install.cmake")
   include("C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/hello_world/build/esp-idf/SparkFun_Ublox_Arduino_Library/cmake_install.cmake")
+  include("C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/hello_world/build/esp-idf/gps/cmake_install.cmake")
 
 endif()
 

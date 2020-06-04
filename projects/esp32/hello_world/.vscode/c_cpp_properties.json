@@ -154,7 +154,8 @@
                 "${workspaceFolder}/components/arduino/libraries/WiFi/src",
                 "${workspaceFolder}/components/arduino/libraries/WiFiClientSecure/src",
                 "${workspaceFolder}/components/SparkFun_Ublox_Arduino_Library/src",
-                "${workspaceFolder}/components/Adafruit_ADS1X15/src"
+                "${workspaceFolder}/components/Adafruit_ADS1X15/src",
+                "${workspaceFolder}/components/gps/src"
             ],
             "defines": [],
             "cStandard": "c11",
