@@ -58,5 +58,6 @@ $<TARGET_FILE:__idf_wifi_provisioning>
 $<TARGET_FILE:__idf_main>
 $<TARGET_FILE:__idf_arduino>
 $<TARGET_FILE:__idf_Adafruit_ADS1X15>
+$<TARGET_FILE:__idf_SparkFun_ADS1015_Arduino_Library>
 $<TARGET_FILE:__idf_SparkFun_Ublox_Arduino_Library>
 $<TARGET_FILE:__idf_gps>

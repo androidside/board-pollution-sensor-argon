@@ -42,6 +42,6 @@ void activateGPS(void *params)
     while (true)
     {
         readGPS(latitude_param, longitude_param, datetime_param);
-        vTaskDelay(1000 / portTICK_PERIOD_MS);
+        vTaskDelay(3000 / portTICK_PERIOD_MS);
     }
 }

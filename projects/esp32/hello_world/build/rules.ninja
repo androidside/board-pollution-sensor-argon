@@ -1306,6 +1306,25 @@ rule CXX_STATIC_LIBRARY_LINKER____idf_Adafruit_ADS1X15
 #############################################
 # Rule for compiling CXX files.
 
+rule CXX_COMPILER____idf_SparkFun_ADS1015_Arduino_Library
+  depfile = $DEP_FILE
+  deps = gcc
+  command = ccache C:\esp\tools\.espressif\tools\xtensa-esp32-elf\esp-2019r2-8.2.0\xtensa-esp32-elf\bin\xtensa-esp32-elf-g++.exe  $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
+  description = Building CXX object $out
+
+
+#############################################
+# Rule for linking CXX static library.
+
+rule CXX_STATIC_LIBRARY_LINKER____idf_SparkFun_ADS1015_Arduino_Library
+  command = cmd.exe /C "$PRE_LINK && C:\esp\tools\.espressif\tools\cmake\3.13.4\bin\cmake.exe -E remove $TARGET_FILE && C:\esp\tools\.espressif\tools\xtensa-esp32-elf\esp-2019r2-8.2.0\xtensa-esp32-elf\bin\xtensa-esp32-elf-ar.exe qc $TARGET_FILE $LINK_FLAGS $in && C:\esp\tools\.espressif\tools\xtensa-esp32-elf\esp-2019r2-8.2.0\xtensa-esp32-elf\bin\xtensa-esp32-elf-ranlib.exe $TARGET_FILE && $POST_BUILD"
+  description = Linking CXX static library $TARGET_FILE
+  restat = $RESTAT
+
+
+#############################################
+# Rule for compiling CXX files.
+
 rule CXX_COMPILER____idf_SparkFun_Ublox_Arduino_Library
   depfile = $DEP_FILE
   deps = gcc

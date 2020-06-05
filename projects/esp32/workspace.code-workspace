@@ -22,6 +22,9 @@
 		{
 			"name": "pio_arduino",
 			"path": "..\\..\\platformio\\pio_arduino"
+		},
+		{
+			"path": "i2c_tools"
 		}
 	],
 	"settings": {
