@@ -1,4 +1,4 @@
-# Install script for directory: C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/board_argon/components/Adafruit_ADS1X15
+# Install script for directory: C:/cygwin64/home/Sauron/git/board_argon/projects/esp32/board_argon/components/SparkFun_TMP102_Arduino_Library
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

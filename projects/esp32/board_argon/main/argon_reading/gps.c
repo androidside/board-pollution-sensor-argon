@@ -3,14 +3,15 @@
 #include "freertos/task.h"
 #include "driver/i2c.h"
 #include "esp_types.h"
-#include "gps.h"
+#include "gpsapi.h"
 #include "esp_log.h"
+#include "freertos/semphr.h"
 
 #define TAG_GPS "GPS_API.C"
-
 float latitude_param;
 float longitude_param;
 char datetime_param[128];
+extern xSemaphoreHandle mutexBus;
 
 float getlatitude()
 {
@@ -48,10 +49,24 @@ void activateGPS(void *params)
 {
     //I cannot directly pass fetchParams.body because it is a pointer in memory, I would have to do a malloc. In this case I decide to create a buffer
 
-    startGPS();
+    if (xSemaphoreTake(mutexBus, 10000 / portTICK_PERIOD_MS))
+    {
+        startGPS();
+        xSemaphoreGive(mutexBus);
+    }
+
     while (true)
     {
-        readGPS(&latitude_param, &longitude_param, datetime_param);
-        vTaskDelay(1000 / portTICK_PERIOD_MS);
+        //We block the semaphore
+        if (xSemaphoreTake(mutexBus, 1000 / portTICK_PERIOD_MS))
+        {
+            readGPS(&latitude_param, &longitude_param, datetime_param);
+            xSemaphoreGive(mutexBus);
+            vTaskDelay(1000 / portTICK_PERIOD_MS);
+        }
+        else
+        {
+            ESP_LOGE(TAG_GPS, "gps.c: readGPS() timeout");
+        }
     }
 }

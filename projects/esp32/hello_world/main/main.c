@@ -38,6 +38,7 @@
 // #include "argon_reading/no2.h"
 #include "gpsapi.h"
 #include "no2.h"
+#include "tmp102.h"
 
 #define TAG "TASKS"
 
@@ -61,8 +62,10 @@ void app_main()
     // }
     
     //xTaskCreate(&readSensors, "create reading", 1024 * 8, NULL, 1, NULL);
-   // xTaskCreate(&activateGPS, "read gps", 1024 * 8, NULL, 5, NULL);
-    xTaskCreate(&activateNO2, "read no2", 1024 *3, NULL, 5, NULL);
+    //xTaskCreate(&activateGPS, "read gps", 1024 * 8, NULL, 5, NULL);
+
+    //xTaskCreate(&activateNO2, "read no2", 1024 *3, NULL, 5, NULL);
+    xTaskCreate(&activateTMP102, "activate TMPS102", 1024 *2, NULL, 5, NULL);
     //xTaskCreate(&activateLM75A, "read LM75A", 1024 * 4, NULL, 5, NULL);
     
 }

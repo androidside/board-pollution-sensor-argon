@@ -14,7 +14,7 @@
 
 float temperature;
 
-float readTemperature()
+float readTemperatureLM75A()
 {
     ESP_LOGI(TAG_LM75A, "**** readTemperature(), temperature = %f ****", temperature);
     return temperature;

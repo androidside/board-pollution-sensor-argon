@@ -151,7 +151,8 @@
 			"__tuple": "cpp",
 			"coroutine": "cpp",
 			"locale": "cpp",
-			"stack": "cpp"
+			"stack": "cpp",
+			"sparkfunads1015api.h": "c"
 		},
 		"git.ignoreLimitWarning": true
 	}

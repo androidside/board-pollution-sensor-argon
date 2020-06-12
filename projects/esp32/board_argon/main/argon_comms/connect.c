@@ -39,6 +39,7 @@ static esp_err_t event_handler(void *ctx, system_event_t *event)
     printf("stack space is %d\n", uxTaskGetStackHighWaterMark(NULL));
     //We give the seamaphore so the task can continue
     xSemaphoreGive(onConnectionHandler);
+    
     break;
 
   case SYSTEM_EVENT_STA_DISCONNECTED:

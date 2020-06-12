@@ -1,5 +1,5 @@
-#ifndef _GPSAPI_H
-#define _GPSAPI_H
+#ifndef _GPS_H
+#define _GPS_H
 
 // const char* readlatitude_api();
 // const char* readlongitude_api();

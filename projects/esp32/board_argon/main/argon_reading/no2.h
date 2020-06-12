@@ -2,7 +2,7 @@
 #define _NO2_H
 
 float readvgas();
-float read_adc_reading_averaged();
+float readvref();
 float readvgas0();
 float readppm();
 int readrgain();
