@@ -10,7 +10,7 @@
 #define TAG_GPS "GPS_API.C"
 float latitude_param;
 float longitude_param;
-char datetime_param[128];
+char datetime_param[128] = "-1";
 extern xSemaphoreHandle mutexBus;
 
 float getlatitude()

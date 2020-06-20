@@ -127,8 +127,8 @@ int postReading(struct reading_t *reading)
     createBodyReading(reading, buffer);
     fetchParams.body = buffer ;
     //We update out fetch.c to acomodate the new parameters
-    //fetch("http://192.168.1.159:5000/postReadingESP32", &fetchParams);
-    fetch("http://100.15.123.61:5001/postReadingESP32", &fetchParams);    
+    fetch("http://192.168.1.43:5000/postReadingESP32", &fetchParams);
+    //fetch("http://100.15.123.61:5001/postReadingESP32", &fetchParams);    
 
     ESP_LOGI(TAG, "postReading () : status code = %d", fetchParams.status);
 

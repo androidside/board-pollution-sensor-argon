@@ -34,9 +34,12 @@
 #include "argon_comms/connect.h"
 #include "argon_reading/lm75a.h"
 #include "argon_reading/no2.h"
+#include "argon_reading/no2adafruit.h"
 #include "argon_reading/gps.h"
 #include "argon_reading/tmp102.h"
 #include "freertos/semphr.h"
+#include "argon_reading/sdcard.h"
+#include "argon_reading/gpios.h"
 
 #define TAG "TASKS"
 #define MAX_APs 20
@@ -128,12 +131,19 @@ void app_main()
   vTaskDelay(1000 / portTICK_PERIOD_MS);
   xTaskCreate(&activateTMP102, "activate TMPS102", 1024 * 4, NULL, 5, NULL);
   vTaskDelay(1000 / portTICK_PERIOD_MS);
-  xTaskCreate(&activateNO2, "read no2", 1024 * 4, NULL, 5, NULL);
   vTaskDelay(5000 / portTICK_PERIOD_MS);
+  xTaskCreate(&activateSDCard, "activate SDCard", 1024 * 4, NULL, 5, NULL);
+  xTaskCreate(&activateGPIOs, "activate GPIOs", 1024 * 4, NULL, 5, NULL);
+  //****16 bit ADC****//
+  //xTaskCreate(&activateNO2adafruit, "activate no2 adafruit", 1024 * 4, NULL, 5, NULL);
+  //****12 bit ADC****//
+   xTaskCreate(&activateNO2, "read no2", 1024 * 4, NULL, 5, NULL);
 
+
+  //Activate wifi with mutex semaphore
   if (xSemaphoreTake(mutexBus, 10000 / portTICK_PERIOD_MS))
   {
-    
+
     wifiInit();
     ESP_LOGI(TAG, "main.c: app_main wifiInit() started, giving mutexBus !!!!!!!!!! ");
     xSemaphoreGive(mutexBus);
@@ -147,6 +157,12 @@ void app_main()
   xTaskCreate(&readSensors, "create reading", 1024 * 8, NULL, 1, &readSensorsTaskHandle);
 
   xTaskCreate(&onConnected, "send reading over HTTP", 1024 * 10, NULL, 1, &onConnectedTaskHandle);
+
+
+
+///////////////////////////////////////////////////////
+///////////////END OF THE CODE/////////////////////////
+///////////////////////////////////////////////////////
 
   //xTaskCreate(&activateLM75A, "read temperature", 1024 * 4, NULL, 4, NULL);
 
