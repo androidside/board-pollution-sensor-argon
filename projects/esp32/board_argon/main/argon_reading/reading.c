@@ -67,7 +67,7 @@ void populateDemoReadingRandom(struct reading_t *reading)
     //reading->intensity = esp_random() % 99; //Random value between 0 and 98 = [0,98]
     reading->intensity = (int) readvref();
     reading->vgas = readvgas();
-    reading->vgas0 = readvgas0();
+    reading->vgas0 = readvref();
     reading->temperature = readTemperatureTMP102();
     reading->ppm = readppm();
     reading->rgain = readrgain();

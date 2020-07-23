@@ -28,7 +28,7 @@ float readvgas()
 float readvref()
 {
     ESP_LOGI(TAG_NO2, "**** readvref() : vref = %f ****", vref);
-    return vref * 1000;
+    return vref;
 }
 
 float readvgas0()
@@ -139,6 +139,7 @@ void activateNO2(void *params)
             vgas = voltage[0]; //Between A0 and A3
             vref = voltage[1]; // Between A1 and A3
             //perform operations
+            vgas0 = 1.662; //A0-A3 measured when no pollution
             float M = SENSITIVITY_CODE_NO_SENSOR * TIA * 1000 * 0.000000001;
             ppm = (vgas - vgas0) / M;
 

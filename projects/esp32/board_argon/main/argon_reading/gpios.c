@@ -23,9 +23,11 @@ void activateGPIOs(void *params)
     while (true)
     {
         isOn = !isOn;
+        printf("---------- LED FFLASHING ----------\n");
+
         gpio_set_level(PIN_FAN, isOn);
         gpio_set_level(PIN_LED_1, isOn);
         gpio_set_level(PIN_LED_2, isOn);
-        vTaskDelay(300 / portTICK_PERIOD_MS);
+        vTaskDelay(3000 / portTICK_PERIOD_MS);
     }
 }
